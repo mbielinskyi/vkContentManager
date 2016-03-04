@@ -1,0 +1,19 @@
+#login-module .wrapper {
+	background: #d3f8f7;
+}
+
+md-whiteframe {
+	background: #fff;
+}
+
+#login-page {
+	height: 800px;
+}
+
+body {
+	height: 800px;
+}
+
+.module-wrapper {
+	height: 800px;	
+}

@@ -1,0 +1,17 @@
+{
+  "name": "vk-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "selenium-webdriver": "^2.52.0",
+    "webpage": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Maksym Bielinskyi",
+  "license": "ISC"
+}

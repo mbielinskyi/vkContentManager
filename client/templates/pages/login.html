@@ -1,0 +1,21 @@
+<div id = "login-page" layout="row" layout-fill layout-align="center center">
+  <md-whiteframe class="md-whiteframe-4dp" layout-padding>
+  <form name="authorization">
+    <div layout="row">
+      <md-input-container flex >
+        <label>Login</label>
+        <input ng-model="user.login">
+      </md-input-container>
+    </div> 
+    <div layout="row">
+      <md-input-container flex >
+        <label>Password</label>
+        <input ng-model="user.password">
+      </md-input-container>
+    </div>        
+    <div layout="row">
+      <md-button ng-click="signIn()" class="md-raised md-primary" flex>Log In</button> 
+    </div>
+  </form>
+  </md-whiteframe>    
+</div> 

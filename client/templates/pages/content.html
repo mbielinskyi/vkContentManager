@@ -1,0 +1,15 @@
+<div id="post-page" layout="row" layout-fill layout-align="center center" class="module-wrapper">
+  <md-whiteframe class="md-whiteframe-4dp" flex="40" layout-padding>
+  <form name="content-item">
+    <div layout="row">
+      <md-input-container flex >
+        <label>Article content</label>
+        <textarea ng-model="content.text"></textarea>
+      </md-input-container>
+    </div>       
+    <div layout="row">
+      <md-button ng-click="submit()" class="md-raised md-primary" flex>post</button> 
+    </div>
+  </form>
+  </md-whiteframe>    
+</div> 
