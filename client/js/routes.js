@@ -6,8 +6,8 @@ vkApp.modules.main.config(['$routeProvider',
         controller: 'LoginController'
       }).
       when('/post', {
-        templateUrl: './templates/pages/content.html',
-        controller: 'ContentController'
+        templateUrl: './templates/pages/post.html',
+        controller: 'PostingController'
       }).    
       when('/friends', {
         templateUrl: './templates/pages/friends.html',

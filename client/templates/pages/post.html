@@ -1,0 +1,46 @@
+<div id="post-page" layout="row" layout-padding class="module-wrapper">
+
+
+  <div layout="column">
+    <md-sidenav flex="30" md-is-locked-open="true" class="md-whiteframe-z1">
+      <md-whiteframe>
+        <md-list ng-cloak>
+          <md-list-item ng-repeat="group in groups" ng-click="selectGroup(group)">
+            <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />
+            <p>{{ group.name }}</p>
+          </md-list-item>
+        </md-list> 
+      </md-whiteframe> 
+    </md-sidenav>
+  </div>
+
+
+  <div layout="column" layout-padding >
+    <md-content id="content" flex="50" layout="column"  role="main" class="md-whiteframe-z1">
+      <div layout="row" layout-align="end stretch">
+
+        <form name="content-item" >
+
+          <div layout="row">
+            <md-input-container>
+              <label>Group ID</label>
+              <input ng-model="content.ownerId">
+            </md-input-container>
+          </div> 
+
+          <div layout="row">
+            <md-input-container>
+              <label>Article content</label>
+              <textarea ng-model="content.text"></textarea>
+            </md-input-container>
+          </div>   
+
+        </form> 
+
+      </div>
+      <md-button form="content-item" ng-click="submit()" class="md-raised md-primary">post</button> 
+    </md-content>
+  </div>
+
+
+</div> 

@@ -1,25 +1,19 @@
 var httpRequest = require("../utils/httpRequest");
-
-var groupId = -116462359;
-
+var querystring = require("querystring");
 var myVkId = 6718249;
 var token = "8ae373703fb582931b25ebf80d4846a32292d22a3000c8a479d57883094568cccd9aa82246db7e82eec66";
 var appId = 5337633;
 var vkURL = "https://api.vkontakte.ru/method/";
 
-
-
-
-
-
 module.exports = function (appId) {
-	this.postOnUserWall = function (message, cb) {
-		var ownerId = myVkId;
+	this.postOnUserWall = function (content, cb) {
+		var ownerId = content.ownerId;
+		var message = content.text;
 		var methodName = "wall.post";
 		var parameters = [
-		    	"owner_id=" + groupId,
+		    	"owner_id=" + ownerId,
 		    	"from_group=1",
-		    	"message=" + message,
+		    	"message=" + encodeURIComponent(message),
 		    	"access_token=" + token
 			].join("&");
 		var url = vkURL + methodName + "?" + parameters; 

@@ -7,4 +7,4 @@ var vkApp = {
 
 vkApp.registerModule("vkAPI", []);
 vkApp.registerModule("vkAutomation", []);
-vkApp.registerModule("main", ["vkAPI", "vkAutomation", "ngRoute", "ngMaterial", "ngMessages"]);
+vkApp.registerModule("main", ["vkAPI", "vkAutomation", "ngRoute", "ngMaterial", "ngMessages", "ngResource"]);
