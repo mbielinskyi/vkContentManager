@@ -1,9 +1,11 @@
 var httpRequest = require("../utils/httpRequest");
 
+var groupId = -116462359;
+
 var myVkId = 6718249;
-var token = "3a5435e7f7af1bacf093c6206454f2cb7faf3b5ca32c889a58f7ce639684addcf0fc13e8bdc8b9ed835d9";
-var appId = "5329876";
-var vkURL = "https://api.vk.com/method/";
+var token = "8ae373703fb582931b25ebf80d4846a32292d22a3000c8a479d57883094568cccd9aa82246db7e82eec66";
+var appId = 5337633;
+var vkURL = "https://api.vkontakte.ru/method/";
 
 
 
@@ -11,12 +13,13 @@ var vkURL = "https://api.vk.com/method/";
 
 
 module.exports = function (appId) {
-	this.postOnUserWall = function () {
+	this.postOnUserWall = function (message, cb) {
 		var ownerId = myVkId;
 		var methodName = "wall.post";
 		var parameters = [
-		    	"owner_id=" + myVkId,
-		    	"message=" + "hello from node.js",
+		    	"owner_id=" + groupId,
+		    	"from_group=1",
+		    	"message=" + message,
 		    	"access_token=" + token
 			].join("&");
 		var url = vkURL + methodName + "?" + parameters; 
@@ -42,6 +45,29 @@ module.exports = function (appId) {
 		    "access_token=" + token
 		].join("&");
 		var url = vkURL + friendsGet + "?" + parameters; 
+
+		httpRequest.get(url, function (r) {
+			cb(r);
+		});
+	};
+
+	this.getGroups = function (cb) {
+		var methodName = "groups.get";
+		var friendsFields = [
+			"city", 			"country", 				"place", 				"description",
+			"wiki_page", 		"members_count", 		"counters", 			"start_date",
+			"finish_date", 		"can_post", 			"can_see_all_posts", 	"activity",
+			"status", 			"contacts", 			"links", 				"fixed_post",
+			"verified", 		"site", 				"can_create_topic"
+		];
+		var parameters = [
+		    "user_id=" + myVkId,
+		    "extended=1",
+		    "filter=" + "admin",
+		    "fields=" + friendsFields.join(","),
+		    "access_token=" + token
+		].join("&");
+		var url = vkURL + methodName + "?" + parameters; 
 
 		httpRequest.get(url, function (r) {
 			cb(r);

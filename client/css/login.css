@@ -7,13 +7,34 @@ md-whiteframe {
 }
 
 #login-page {
-	height: 800px;
+	height: 100%;
 }
 
 body {
-	height: 800px;
+	background-color: #f2f2f2
 }
 
 .module-wrapper {
-	height: 800px;	
+	height: 100%;	
+}
+
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.star-rating .star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.star-rating .star.filled {
+  color: #fd0;
+}
+.star-rating.readonly .star.filled {
+  color: #666;
 }

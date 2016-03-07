@@ -1,0 +1,10 @@
+<div id = "login-page" layout layout-fill layout-align="center center">  
+  <md-whiteframe class="md-whiteframe-2dp">
+    <md-list ng-cloak>
+      <md-list-item ng-repeat="friend in friends" layout="row">
+        <img alt="{{ friend.first_name + " " + friend.last_name }}" ng-src="{{ friend.photo_50 }}" class="md-avatar" />
+        <p>{{ friend.first_name + " " + friend.last_name }}</p>
+      </md-list-item>
+    </md-list> 
+  </md-whiteframe> 
+</div> 
