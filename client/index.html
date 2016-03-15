@@ -7,69 +7,24 @@
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="css/login.css">
+
   <script src="js/lib/angular.js"></script>
-  <script src="js/lib/angular-route.js"></script>
+
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
-  
-
-  <!-- Angular Material Library -->
+  <!-- Angular Material Library --> 
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
-  <script type="text/javascript" src="js/app.js"></script>
-  <script type="text/javascript" src="js/routes.js"></script>
-  <script type="text/javascript" src="js/services/friends.js"></script>
-  <script type="text/javascript" src="js/services/groups.js"></script>   
-  <script type="text/javascript" src="js/directives/star-rating/index.js"></script>
-  <script type="text/javascript" src="js/services/vk-api.js"></script>
-  <script type="text/javascript" src="js/services/vk-automation.js"></script>
-  <script type="text/javascript" src="js/controllers/main-controller.js"></script>
-  <script type="text/javascript" src="js/controllers/login-controller.js"></script>
-  <script type="text/javascript" src="js/controllers/posting-controller.js"></script>
-  <script type="text/javascript" src="js/controllers/friends-controller.js"></script>
-  <script type="text/javascript" src="js/controllers/groups-controller.js"></script>
-  <script type="text/javascript" src="js/controllers/langs-controller.js"></script>
+  <script src="js/app/main/index.js"></script>
+  <script src="js/app/groups/services/groups.js"></script>
+  <script src="js/app/groups/components/groupsList/index.js"></script>
+  <script src="js/app/groups/components/groupDetails/index.js"></script>
 </head>
-<body ng-app="main">
-
-<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
-
-<script language="javascript">
-  var myId = 6718249;
-
-  VK.init({
-    apiId: 5329876
-  });
-</script>
-
-
-  <div ng-view>
-    
-  </div>
-
-<!--   <div class="app" ng-controller="mainController">
-    <span>{{userId}}</span>
-    <div>
-      <span ng-show="showLogOut">Please wait. Checking login status...</span>
-      <input type = "text" ng-model="user.login" ng-show="showLogIn"></input>
-      <input type = "password" ng-model="user.password"  ng-show="showLogIn"></input>  
-      <button ng-click="signIn()"  ng-show="showLogIn">log in</button>
-      <button ng-click="signOut()"  ng-show="showLogOut">log out</button>
-    </div>
-
-
-    <button ng-click="getFriendsList()" ng-show="showLogOut">get friends</button>
-
-    <div>
-      <div ng-repeat="friend in friends">
-        <span>{{friend.first_name + " " + friend.last_name}}</span><br>
-      </div>
-    </div>
+<body ng-app="app">
+  <app></app>
+  <!--   <div ng-view>
   </div> -->
-
-
-
 </body>
 </html>

@@ -1,7 +1,7 @@
 vkApp.modules.main.controller("PostingController", 
 	["$scope", "groups", "$http", 
 	function ($scope, groups, $http) {
-		var url = "http://localhost:3000/test";
+		var url = "http://localhost:3000/post-to-wall";
 		$scope.selectedGroup = {
 			gid: -116462359
 		};

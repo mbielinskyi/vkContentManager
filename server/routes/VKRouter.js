@@ -1,24 +1,58 @@
 var express = require('express'),
 	router = express.Router();
-	//vk = require("../VKPageObject");
 
 //guess new better name later
-var vkAPIConstructor = require("../vkAPI");
+var vkAPIConstructor = require("vkAPI");
 var vkAPI = new vkAPIConstructor();
 
 
-router.post('/test', function(req, res, next) {
+router.post('/post-to-wall', function(req, res, next) {
 	var message = req.body.message;
-	vkAPI.postOnUserWall(message, function (r) {
+	vkAPI.postOnWall(message, function (r) {
 		res.send(r);
 	});
 });
 
-router.get('/test', function(req, res, next) {
-	//vkAPI.test(req, res);
-	vkAPI.postOnUserWall();
-});
+router.get('/content-items', function (req, res) {
+	var contentItemsMock = [
+		{
+			groupId: -116462359,
+			contentItems: [
+				{
+					content: "Some text 1"
+				},
+				{
+					content: "Some text 2"
+				},
+				{
+					content: "Some text 3"
+				},
+				{
+					content: "Some text 4"
+				},												
+			]
+		},
+		{
+			groupId: -51880934,
+			contentItems: [
+				{
+					content: "Some text 1"
+				},
+				{
+					content: "Some text 2"
+				},
+				{
+					content: "Some text 3"
+				},
+				{
+					content: "Some text 4"
+				},												
+			]
+		}
+	];
 
+	res.send(contentItemsMock);
+});
 
 /* GET home page. */
 router.post('/login', function(req, res, next) {
@@ -41,14 +75,12 @@ router.get('/get-login-status', function(req, res, next) {
 
 /* GET home page. */
 router.get('/get-friends', function(req, res, next) {
-
 	vkAPI.getFriends(function (data) {
 		res.send(data.replace(/\\\//g, "\/"));
 	});
 });
 
 router.get('/get-groups', function(req, res, next) {
-
 	vkAPI.getGroups(function (data) {
 		res.send(data.replace(/\\\//g, "\/"));
 	});
