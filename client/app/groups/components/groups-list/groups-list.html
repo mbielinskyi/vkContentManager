@@ -1,0 +1,10 @@
+<div id = "groups-list">
+	<ul>
+		<li ng-repeat="group in $ctrl.elements" ng-click="$ctrl.onSelect({group: group})">
+	        <img alt="{{ group.name}}" ng-src="{{ group.photo }}" />
+	        <p>{{ group.name }}</p>
+<!-- 	        <input type="checkbox">Switch on/off</input>
+			<p>Next post in: 00:11:25</p> -->
+		</li>
+	</ul>	
+</div>

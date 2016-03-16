@@ -1,0 +1,6 @@
+<div id="articles-list">
+	<div ng-repeat="article in $ctrl.articles track by $index">
+		<p>{{article.text}}</p>
+		<button ng-click="$ctrl.addToQueue(article)">add to queue</button>
+	</div>
+</div>

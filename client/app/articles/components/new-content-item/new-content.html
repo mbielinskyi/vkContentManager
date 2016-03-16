@@ -1,0 +1,8 @@
+<div ng-if="!$ctrl.collapsed">
+	Article content: <textarea type="text" ng-model="$ctrl.article.text"></textarea>
+	<br>	
+	Delay in ms: <input type="number" ng-model="$ctrl.article.delay"></input>
+	<br>	
+	<button ng-click="$ctrl.save()">Save</button>
+</div>
+<button ng-click="$ctrl.toggleState()">{{$ctrl.collapsed? "Add article": "Cancel"}}</button>

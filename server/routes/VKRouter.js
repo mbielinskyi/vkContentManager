@@ -16,39 +16,40 @@ router.post('/post-to-wall', function(req, res, next) {
 router.get('/content-items', function (req, res) {
 	var contentItemsMock = [
 		{
-			groupId: -116462359,
-			contentItems: [
-				{
-					content: "Some text 1"
-				},
-				{
-					content: "Some text 2"
-				},
-				{
-					content: "Some text 3"
-				},
-				{
-					content: "Some text 4"
-				},												
-			]
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 1"
 		},
 		{
-			groupId: -51880934,
-			contentItems: [
-				{
-					content: "Some text 1"
-				},
-				{
-					content: "Some text 2"
-				},
-				{
-					content: "Some text 3"
-				},
-				{
-					content: "Some text 4"
-				},												
-			]
-		}
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 2"
+		},
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 3"
+		},
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 4"
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 5"
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 6"
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 7"
+		}	
 	];
 
 	res.send(contentItemsMock);

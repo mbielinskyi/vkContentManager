@@ -1,0 +1,19 @@
+<div id = "groupDetails">
+	This will be tabs for group: 
+	<my-tabs>
+	  <my-pane title="Group Info">
+		<h2>Group name: {{$ctrl.selectedGroup.name}}</h2>
+		<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
+		<br>
+		<p>Group ID: {{$ctrl.selectedGroup.gid}}</p>
+		<br>
+	  </my-pane>
+	  <my-pane title="Posting Queue">
+		<articles-list articles="$ctrl.articles" on-queue=""></articles-list>
+	  </my-pane>
+	  <my-pane title="Posting History">
+		<p>Here will be Posting History component</p>
+	  </my-pane>
+	</my-tabs>
+	<new-content on-save="$ctrl.addArticle(article)"></new-content>
+</div>
