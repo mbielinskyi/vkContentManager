@@ -89,7 +89,7 @@ router.get('/langs', function (req, res) {
 	function getCustomDelay () {
 		var delay = 100000;
 		var nowUnix = (new Date()).valueOf();
-		var randDelay = Math.floor(Math.random() * 10000);
+		var randDelay = Math.floor(Math.random() * delay);
 
 		return nowUnix + randDelay;
 	}
