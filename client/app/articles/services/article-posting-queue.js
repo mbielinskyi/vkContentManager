@@ -11,36 +11,36 @@ define([], function () {
 					-52776178
 				];
 			var queue = [
-					{
-						ownerId: -50732577,
-						scheduledPostDate: (new Date().valueOf() + 10000),
-						text: "Русский текст"  
-					},
-					{
-						ownerId: -50732577,
-						scheduledPostDate: (new Date().valueOf() + 12000),
-						text: "some new text to be posted"  
-					},
-					{
-						ownerId: -72099551,
-						scheduledPostDate: (new Date().valueOf() + 14000),
-						text: "some new new text to be posted"  
-					},
-					{
-						ownerId: -52776178,
-						scheduledPostDate: (new Date().valueOf() + 16000),
-						text: "some new new new text to be posted"  
-					},
-					{
-						ownerId: -51880934,
-						scheduledPostDate: (new Date().valueOf() + 18000),
-						text: "some new new new new text to be posted"  
-					},
-					{
-						ownerId: -51880934,
-						scheduledPostDate: (new Date().valueOf() + 30000),
-						text: "some new new new new new text to be posted"  
-					}
+					// {
+					// 	ownerId: -50732577,
+					// 	scheduledPostDate: (new Date().valueOf() + 10000),
+					// 	text: "Русский текст"  
+					// },
+					// {
+					// 	ownerId: -50732577,
+					// 	scheduledPostDate: (new Date().valueOf() + 12000),
+					// 	text: "some new text to be posted"  
+					// },
+					// {
+					// 	ownerId: -72099551,
+					// 	scheduledPostDate: (new Date().valueOf() + 14000),
+					// 	text: "some new new text to be posted"  
+					// },
+					// {
+					// 	ownerId: -52776178,
+					// 	scheduledPostDate: (new Date().valueOf() + 16000),
+					// 	text: "some new new new text to be posted"  
+					// },
+					// {
+					// 	ownerId: -51880934,
+					// 	scheduledPostDate: (new Date().valueOf() + 18000),
+					// 	text: "some new new new new text to be posted"  
+					// },
+					// {
+					// 	ownerId: -51880934,
+					// 	scheduledPostDate: (new Date().valueOf() + 30000),
+					// 	text: "some new new new new new text to be posted"  
+					// }
 				];
 			var checkExpiredInterval;
 
@@ -114,9 +114,12 @@ define([], function () {
 					checkForEmptyQueue();
 				},
 
-				activateGroupPosting: function (groupId) {
-					if (activatedGroupsList.indexOf(groupId) === -1) {
+				toggleGroupAutoposting: function (groupId) {
+					var groupIdPosition = activatedGroupsList.indexOf(groupId * -1);
 
+					if (groupIdPosition !== -1) {
+						activatedGroupsList.splice(groupIdPosition, 1);
+					} else {
 						// if there are expired posts
 						// for turned off group
 						// we should recalculate their scheduled posting date
@@ -133,12 +136,8 @@ define([], function () {
 					}
 				},
 
-				deactivateGroupPosting: function (groupId) {
-					var groupIdPosition = activatedGroupsList.indexOf(groupId);
-
-					if (groupIdPosition !== -1) {
-						activatedGroupsList.splice(groupIdPosition, 1);
-					}
+				getAutopostingState: function (groupId) {
+					return activatedGroupsList.indexOf(groupId * -1) !== -1;
 				}
 			};	
 		}

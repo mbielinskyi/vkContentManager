@@ -1,12 +1,27 @@
 define([], function () {
-	function GroupsListComponent () {
+	function GroupsListComponent (articlePostingQueue, groupsContainer) {
 		var $ctrl = this;
 
-		$ctrl.elements = [];
+		$ctrl.groups = [];
 
-		// get list of groups for which auto-posting is turned ON
-        // calculate and start countdown timer for each of them
-        // display status for each group and count of articles pending for posting
+
+		$ctrl.toggleGroupAutoposting = function (group) {
+			group.isActive = !group.isActive;
+
+			articlePostingQueue.toggleGroupAutoposting(group.gid);
+		};
+
+		function updateGroupsActivationState (groups) {
+			groups.forEach(function (group) {
+				group.isActive = articlePostingQueue.getAutopostingState(group.gid);
+			});
+		}
+
+		$ctrl.$onInit = function () {
+			$ctrl.groupsPromise.then(function (groups) {
+				updateGroupsActivationState(groups);
+			});			
+		};
 	}
 
 	return {
@@ -14,8 +29,9 @@ define([], function () {
 		config: {
 			templateUrl: 'app/groups/components/groups-list/groups-list.html',
 			bindings: {
-				elements: "<",
-				onSelect: "&"
+				'groupsPromise': "=",
+				'groups': "<elements",
+				'onSelect': "&"
 			},
 			controller: GroupsListComponent
 		}

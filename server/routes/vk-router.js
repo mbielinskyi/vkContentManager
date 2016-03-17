@@ -14,44 +14,6 @@ router.post('/post-to-wall', function(req, res, next) {
 });
 
 router.get('/content-items', function (req, res) {
-	var contentItemsMock = [
-		{
-			ownerId: -116462359,
-			delay: 10000,
-			text: "Some text 1"
-		},
-		{
-			ownerId: -116462359,
-			delay: 10000,
-			text: "Some text 2"
-		},
-		{
-			ownerId: -116462359,
-			delay: 10000,
-			text: "Some text 3"
-		},
-		{
-			ownerId: -116462359,
-			delay: 10000,
-			text: "Some text 4"
-		},
-		{
-			ownerId: -51880934,
-			delay: 10000,
-			text: "Some text 5"
-		},
-		{
-			ownerId: -51880934,
-			delay: 10000,
-			text: "Some text 6"
-		},
-		{
-			ownerId: -51880934,
-			delay: 10000,
-			text: "Some text 7"
-		}	
-	];
-
 	res.send(contentItemsMock);
 });
 
@@ -123,5 +85,79 @@ router.get('/langs', function (req, res) {
 
 		res.send(JSON.stringify(langs));
 });
+	
+	function getCustomDelay () {
+		var delay = 100000;
+		var nowUnix = (new Date()).valueOf();
+		var randDelay = Math.floor(Math.random() * 10000);
+
+		return nowUnix + randDelay;
+	}
+
+	var contentItemsMock = [
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 1",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 2",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 3",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -116462359,
+			delay: 10000,
+			text: "Some text 4",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 5",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 6",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		},
+		{
+			ownerId: -51880934,
+			delay: 10000,
+			text: "Some text 7",
+			author: "Maksim Bielinskyi",
+			creationDate: (new Date()).valueOf(),
+			scheduledPostDate: getCustomDelay(),
+			isExpired: false
+		}	
+	];
 
 module.exports = router;

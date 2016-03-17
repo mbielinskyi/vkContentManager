@@ -1,10 +1,9 @@
 define([
-	'angular',
 	'../articles/articles-module',
 	'groups/services/groups-container',
 	'groups/components/group-details/group-details',
 	'groups/components/groups-list/groups-list',
-], function (angular, articles, groupsContainer, groupDetailsComponent, groupsListComponent) {
+], function (articles, groupsContainer, groupDetailsComponent, groupsListComponent) {
 	var moduleName = 'groups';
 	
 	angular

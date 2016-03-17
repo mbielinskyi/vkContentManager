@@ -1,10 +1,14 @@
 <div id = "groups-list">
-	<ul>
-		<li ng-repeat="group in $ctrl.elements" ng-click="$ctrl.onSelect({group: group})">
-	        <img alt="{{ group.name}}" ng-src="{{ group.photo }}" />
-	        <p>{{ group.name }}</p>
-<!-- 	        <input type="checkbox">Switch on/off</input>
-			<p>Next post in: 00:11:25</p> -->
-		</li>
-	</ul>	
+	<h1 class="md-display-2" layout-padding>Available Groups</h1>
+	<md-divider></md-divider>
+	<md-list-item ng-repeat="group in $ctrl.groups" ng-click="$ctrl.onSelect({group: group})" class="noright">
+	    <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />
+	    <p>{{ group.name }}</p>
+	    <md-button class="md-raised" 
+	    	ng-click="$ctrl.toggleGroupAutoposting(group); $event.stopPropagation();" 
+	    	ng-class="{'md-primary': !group.isActive, 'md-warn': group.isActive}">
+	    	{{group.isActive? 'stop posting': 'start posting'}}
+	    </md-button>
+	    <md-divider></md-divider>
+	</md-list-item>	
 </div>

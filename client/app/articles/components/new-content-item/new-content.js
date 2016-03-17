@@ -6,11 +6,13 @@ define([], function () {
 
 		$ctrl.article = {
 			text: "",
-			delay: 0,
-			scheduledPostDate: new Date()
+			delay: 1000,
+			scheduledPostDate: new Date(),
+			author: "Maksim Bielinskyi"
 		};
 
 		$ctrl.save = function () {
+			$ctrl.article.creationDate = (new Date()).valueOf();
 			$ctrl.onSave({article: $ctrl.article});
 			$ctrl.collapsed = !$ctrl.collapsed;
 		};

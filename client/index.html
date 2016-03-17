@@ -3,14 +3,25 @@
 <head>
   <title>VK Automation</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+
 
   <link rel="stylesheet" href="app/main/components/vk-app/vk-app.css">
   <link rel="stylesheet" href="app/groups/components/group-details/group-details.css">
   <link rel="stylesheet" href="app/groups/components/groups-list/groups-list.css">
 
+  <script src="lib/angular.js"></script> 
+  <script src="lib/angular-animate.js"></script>  
+  <script src="lib/angular-aria.js"></script>  
+  <script src="lib/angular-messages.js"></script>
+  <script src="lib/angular-material/angular-material.js"></script>  
+
+
   <script data-main="app/main" src="lib/require.js"></script>
 </head>
 <body>
-  <app></app>
+  <app ng-cloak></app>
 </body>
 </html>

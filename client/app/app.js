@@ -2,8 +2,8 @@
 'use strict';
 
 require([
-	'angular'
-], function (angular) {
+
+], function () {
 	require([
 		'main/main-module'
 	], function (app) {

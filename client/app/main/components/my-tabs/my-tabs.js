@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define([], function () {
 
   function MyTabsComponent () {
     var panes = this.panes = [];

@@ -1,2 +1,7 @@
-  <groups-list elements="$ctrl.groups" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
+<!-- <md-whiteframe class="md-whiteframe-1dp" layout layout-margin> -->
+  <groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
+ <!-- </md-whiteframe> -->
+<!-- <md-whiteframe class="md-whiteframe-1dp"  layout layout-margin>  -->
   <group-details selected-group="$ctrl.selectedGroup" articles="$ctrl.selectedArticles"></group-details>
+ <!-- </md-whiteframe>  -->
+

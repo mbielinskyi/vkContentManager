@@ -5,7 +5,7 @@ define([], function () {
 		fn: function ArticlesService ($q, $http) {
 			var subscriptions= {
 				articleAdded: []
-			}
+			};
 
 
 			return {

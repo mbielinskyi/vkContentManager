@@ -1,5 +1,4 @@
 define([
-	'angular',
 	'articles/services/articles-container',
 	//'articles/components/article/',
 	'articles/components/articles-list/articles-list',
@@ -7,7 +6,7 @@ define([
 	'articles/services/article-posting-queue',
 	'articles/components/new-content-item/new-content'
 
-], function (angular, articlesContainer, articlesListComponent, articlePoster, articlePostingQueue, newContentComponent) {
+], function (articlesContainer, articlesListComponent, articlePoster, articlePostingQueue, newContentComponent) {
 	var moduleName = 'articles';
 	
 	angular

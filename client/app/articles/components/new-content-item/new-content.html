@@ -1,8 +1,21 @@
-<div ng-if="!$ctrl.collapsed">
+<!-- <div ng-if="!$ctrl.collapsed"> -->
+<!-- <div>
 	Article content: <textarea type="text" ng-model="$ctrl.article.text"></textarea>
 	<br>	
 	Delay in ms: <input type="number" ng-model="$ctrl.article.delay"></input>
 	<br>	
-	<button ng-click="$ctrl.save()">Save</button>
+
+</div> -->
+<!-- <button ng-click="$ctrl.toggleState()">{{$ctrl.collapsed? "Add article": "Cancel"}}</button> -->
+<div layout-gt-sm="row">
+	<md-input-container class="md-block">
+	  <label>Article content</label>
+	  <textarea ng-model="$ctrl.article.text" md-select-on-focus></textarea>
+	</md-input-container>
+	<!-- <md-datepicker ng-model="$ctrl.article.delay" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker> -->
+    <md-input-container class="md-block" flex-gt-sm>
+	    <label>Posting delay</label>
+	    <input type="number" name="postalCode" ng-model="$ctrl.article.delay" placeholder="1000" required>
+    </md-input-container>
 </div>
-<button ng-click="$ctrl.toggleState()">{{$ctrl.collapsed? "Add article": "Cancel"}}</button>
+<md-button class="md-raised md-primary" ng-click="$ctrl.save()">Save</button>
