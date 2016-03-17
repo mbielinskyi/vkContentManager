@@ -2,7 +2,7 @@ var express = require('express'),
 	router = express.Router();
 
 //guess new better name later
-var vkAPIConstructor = require("vkAPI");
+var vkAPIConstructor = require("vk-api");
 var vkAPI = new vkAPIConstructor();
 
 

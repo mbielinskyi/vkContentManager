@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var VKRoutes = require('./routes/VKRouter');
+var VKRoutes = require('./routes/vk-router');
 
 var app = express();
 
