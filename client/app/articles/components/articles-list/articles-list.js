@@ -18,18 +18,18 @@ define([], function () {
 		};
 
 		function checkExpirationState () {
+			// TODO: add logic to disable timer
+
 			$ctrl.articles.forEach(function (article) {
 				var now = (new Date()).valueOf();
 				// for testing
-				article.willExpireIn = now - article.scheduledPostDate;
+				article.willExpireIn = article.scheduledPostDate - now;
 
 				if (article.isExpired) return;
 
 				if (article.scheduledPostDate <= now ) {
 					article.isExpired = true;
 				}
-
-				// article.willExpireIn = article.scheduledPostDate - now;
 			});
 		}
 

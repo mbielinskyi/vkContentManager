@@ -1,0 +1,18 @@
+<label>Posting date</label>
+<md-datepicker style="margin-bottom: 14px;" 
+	ng-model="$ctrl.selectedDate" 
+	md-placeholder="Enter date"
+    md-min-date="$ctrl.minDate"
+    ng-change = "$ctrl.checkDate()"
+    >
+</md-datepicker>
+
+<md-input-container class="md-block">
+	<label>Posting time</label>
+	<input type="text" ng-model="$ctrl.time" ng-list=":" ng-change="$ctrl.checkTimeFormat()" required>
+</md-input-container>
+
+<md-input-container class="md-block">
+    <label>Posting delay in seconds</label>
+    <input type="number" name="postalCode" ng-model="$ctrl.delay" ng-change="$ctrl.checkDelay()" placeholder="1" required>
+</md-input-container>

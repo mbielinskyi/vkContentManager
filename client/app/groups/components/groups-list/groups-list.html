@@ -1,14 +1,11 @@
-<div id = "groups-list">
-	<h1 class="md-display-2" layout-padding>Available Groups</h1>
-	<md-divider></md-divider>
-	<md-list-item ng-repeat="group in $ctrl.groups" ng-click="$ctrl.onSelect({group: group})" class="noright">
-	    <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />
-	    <p>{{ group.name }}</p>
-	    <md-button class="md-raised" 
-	    	ng-click="$ctrl.toggleGroupAutoposting(group); $event.stopPropagation();" 
-	    	ng-class="{'md-primary': !group.isActive, 'md-warn': group.isActive}">
-	    	{{group.isActive? 'stop posting': 'start posting'}}
-	    </md-button>
-	    <md-divider></md-divider>
-	</md-list-item>	
-</div>
+<!-- <h3 class="md-display-2" layout-padding>Available Groups</h3> -->
+<md-list-item ng-repeat="group in $ctrl.groups" ng-click="$ctrl.onSelect({group: group})" class="noright">
+	<md-divider ng-if="!$last"></md-divider>
+    <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />
+    <p>{{ group.name }}</p>
+    <md-button class="md-raised" 
+    	ng-click="$ctrl.toggleGroupAutoposting(group); $event.stopPropagation();" 
+    	ng-class="{'md-primary': !group.isActive, 'md-warn': group.isActive}">
+    	{{group.isActive? 'stop posting': 'start posting'}}
+    </md-button>
+</md-list-item>	

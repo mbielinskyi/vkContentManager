@@ -1,44 +1,16 @@
-<div id="articles-list">
-<!-- 	<div ng-repeat="article in $ctrl.articles track by $index">
-		<p>{{article.text}}</p>
-		<button ng-click="$ctrl.addToQueue(article)">add to queue</button>
-	</div> -->
+<style type="text/css">
+    .expiredArticle {
+    	color: red;
+    }
+</style>
 
+<!-- <md-grid-list
+        md-cols="6"
+		md-row-height="40px"
+        md-gutter="8px">
+    <md-grid-tile ng-repeat="article in $ctrl.articles track by $index"> -->
 
-
-<!-- 		<md-list-item ng-repeat="article in $ctrl.articles track by $index" class="md-3-line md-long-text noright">
-		    <div class="md-list-item-text">
-		    	<h3>Author: {{ article.author }}</h3>
-		    	<p>{{ article.text }}</p>
-		    </div>
-		    <md-button class="md-raised md-primary" ng-click="$ctrl.addToQueue(article)">add to queue</md-button>
-		</md-list-item> -->
-
-<!-- 		<md-card ng-repeat="article in $ctrl.articles track by $index">
-	        <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">Author: {{ article.author }}</span>
-	          </md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-	          {{ article.text }}
-	        </md-card-content>
-	        <md-card-actions layout="row" layout-align="end center">
-	          <md-button ng-click="$ctrl.addToQueue(article)">add to queue</md-button>
-	        </md-card-actions>
-	    </md-card> -->
-	    <style type="text/css">
-	    .expiredArticle {
-	    	color: red;
-	    }
-
-	    </style>
-  <md-grid-list
-        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
-        md-row-height-gt-md="1:1" md-row-height="4:4"
-        md-gutter="8px" md-gutter-gt-sm="4px" >
-    <md-grid-tile ng-repeat="article in $ctrl.articles track by $index">
-		<md-card>
+		<md-card layout-nowrap ng-repeat="article in $ctrl.articles track by $index">
 	        <md-card-title>
 	          <md-card-title-text>
 	            <span class="md-headline">Author: {{ article.author }}</span>
@@ -48,7 +20,7 @@
 	        <md-card-content>
 	          {{ article.text }}
 	          <br>
-	          <hr/>
+	          <md-divider></md-divider>
 	          <p>
 	          	Created: {{article.creationDate | date:"MM/dd/yyyy 'at' h:mma"}}
 	          </p>
@@ -58,20 +30,13 @@
 	          		{{article.isExpired? "expired": article.scheduledPostDate | date:"MM/dd/yyyy 'at' hh:mm:ss"}}
 	          	</span>
 	          </p>
-	          <p>Will expire in: {{article.willExpireIn | millSecondsToTimeString}}</p>
+	          <p ng-if="!article.isExpired">Will expire in: {{article.willExpireIn | millSecondsToTimeString}}</p>
 	        </md-card-content>
 
 	        <md-card-actions layout="row" layout-align="end center">
 	          <md-button class="md-raised md-primary" ng-click="$ctrl.addToQueue(article)">add to queue</md-button>
 	        </md-card-actions>
 	    </md-card>
-    </md-grid-tile>
-  </md-grid-list>
+<!--     </md-grid-tile>
+</md-grid-list> -->
 
-
-
-
-
-
-
-</div>

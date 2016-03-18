@@ -1,7 +1,27 @@
-<!-- <md-whiteframe class="md-whiteframe-1dp" layout layout-margin> -->
-  <groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
- <!-- </md-whiteframe> -->
-<!-- <md-whiteframe class="md-whiteframe-1dp"  layout layout-margin>  -->
-  <group-details selected-group="$ctrl.selectedGroup" articles="$ctrl.selectedArticles"></group-details>
- <!-- </md-whiteframe>  -->
+<md-toolbar>
+  	<div class="md-toolbar-tools">
+	    <md-button class="md-icon-button" aria-label="Settings">
+	      	<md-icon></md-icon>
+	    </md-button>
+	    <h2>
+	      	<span>Vkontakte Content Manager</span>
+	    </h2>
+	    <span flex></span>
+	    <md-button class="md-icon-button" aria-label="Favorite">
+	      	<md-icon style="color: greenyellow;"></md-icon>
+	    </md-button>
+	    <md-button class="md-icon-button" aria-label="More">
+	      	<md-icon></md-icon>
+	    </md-button>
+  	</div>
+</md-toolbar>
 
+<div flex layout="row">
+<md-whiteframe class="md-whiteframe-1dp" layout-margin layout="column">
+	<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>	
+</md-whiteframe>
+
+<md-whiteframe flex class="md-whiteframe-1dp" layout-margin layout="column"> 
+	<group-details selected-group="$ctrl.selectedGroup" articles="$ctrl.selectedArticles"></group-details>	
+</md-whiteframe> 
+</div>

@@ -1,55 +1,23 @@
-<div id = "groupDetails">
-<!-- 	This will be tabs for group: 
-	<my-tabs>
-	  <my-pane title="Group Info">
-		<h2>Group name: {{$ctrl.selectedGroup.name}}</h2>
-		<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
-		<br>
-		<p>Group ID: {{$ctrl.selectedGroup.gid}}</p>
-		<br>
-	  </my-pane>
-	  <my-pane title="Posting Queue">
-		<articles-list articles="$ctrl.articles" on-queue=""></articles-list>
-	  </my-pane>
-	  <my-pane title="Posting History">
-		<p>Here will be Posting History component</p>
-	  </my-pane>
-	</my-tabs>
-	<new-content on-save="$ctrl.addArticle(article)"></new-content> -->
-
-		<md-tabs md-dynamic-height md-border-bottom>
-			<md-tab label="Details">
-				<md-content class="md-padding">
-					<h1 class="md-display-2">Details</h1>
-					<br>
-					<h3>Group name: {{$ctrl.selectedGroup.name}}</h3>
-					<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
-					<br>
-					<p>Group ID: {{$ctrl.selectedGroup.gid}}</p>
-					<br>
-				</md-content>
-			</md-tab>
-			<md-tab label="Articles">
-				<md-content class="md-padding">
-				  	<h1 class="md-display-2">Articles</h1>
-					<articles-list articles="$ctrl.articles" on-queue=""></articles-list>
-				</md-content>
-			</md-tab>
-			<md-tab label="Posting History">
-				<md-content class="md-padding">
-				  	<h1 class="md-display-2">Posting History</h1>
-					<p>Here will be Posting History component</p>
-				</md-content>
-			</md-tab>
-			<md-tab label="New Article">
-				<md-content class="md-padding">
-				  	<h1 class="md-display-2">New Article</h1>
-					<new-content on-save="$ctrl.addArticle(article)"></new-content>
-				</md-content>
-			</md-tab>
-		</md-tabs>
-
-
-
-</div>
-
+<md-tabs md-border-bottom>
+	<md-tab label="Details">
+			<h1 class="md-display-2">Details</h1>
+			<br>
+			<h3>Group name: {{$ctrl.selectedGroup.name}}</h3>
+			<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
+			<br>
+			<p>Group ID: {{$ctrl.selectedGroup.gid}}</p>
+			<br>
+	</md-tab>
+	<md-tab label="Articles">
+		  	<h1 class="md-display-2">Articles</h1>
+			<articles-list articles="$ctrl.articles" on-queue=""></articles-list>
+	</md-tab>
+	<md-tab label="Posting History">
+		  	<h1 class="md-display-2">Posting History</h1>
+			<p>Here will be Posting History component</p>
+	</md-tab>
+	<md-tab label="New Article">
+		  	<h1 class="md-display-2">New Article</h1>
+			<new-content on-save="$ctrl.addArticle(article)"></new-content>
+	</md-tab>
+</md-tabs>

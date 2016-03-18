@@ -1,14 +1,13 @@
 define([], function () {
 	function PostingQueueComponent () {
-
-		$ctrl.
+		var $ctrl = this;
 
 	}
 
 	return {
 		name: "postingQueue",
 		config: {
-			templateUrl: '',
+			templateUrl: 'app/groups/components/posting-queue/posting-queue.html',
 			bindings: {
 			},
 			controller: PostingQueueComponent
