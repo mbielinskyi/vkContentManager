@@ -1,15 +1,16 @@
 define([], function () {
-	function GroupDetailsComponent (articlesContainer) {
+	function GroupDetailsComponent (articlesContainer, groupsStorage) {
 		var $ctrl = this;
 
 		$ctrl.articles = [];	
+		$ctrl.selectedGroup = {};
 
 		// passed to new-content component
 		// adds new article to articles collection
 		// does nothing with posting
 		$ctrl.addArticle = function (article) {
 			article.ownerId = $ctrl.selectedGroup.gid * -1;
-			articlesContainer.add(article);
+			groupsStorage.addArticleToGroup(article, $ctrl.selectedGroup);
 		};
 	}
 
@@ -18,8 +19,7 @@ define([], function () {
 		config: {
 			templateUrl: 'app/groups/components/group-details/group-details.html',
 			bindings: {
-				selectedGroup: "<",
-				articles: "<"
+				selectedGroup: "<"
 			},
 			controller: GroupDetailsComponent
 		}

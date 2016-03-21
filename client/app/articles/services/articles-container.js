@@ -1,3 +1,5 @@
+
+
 define([], function () {
 	return {
 		name: "articlesContainer",
@@ -6,7 +8,10 @@ define([], function () {
 			var subscriptions= {
 				articleAdded: []
 			};
+			var pendingArticlesDeffered;
 
+			// all articles of all groups
+			var cache = [];
 
 			return {
 				on: function (eventName, cb) {
@@ -23,23 +28,50 @@ define([], function () {
 				},
 
 				query: function (groupId) {
-					var deffered = $q.defer();
+					if (!pendingArticlesDeffered) {
+						pendingArticlesDeffered = $q.defer();
 
-					$http.get("http://localhost:3000/content-items").then(
-						function (r) {
-							deffered.resolve(r.data);
-						},
-						function (error) {
-							deffered.reject(error);
-						}
-					);	
+						$http.get("http://localhost:3000/content-items").then(
+							function (r) {
+								pendingArticlesDeffered.resolve(r.data);
+								pendingArticlesDeffered = undefined;
+								cache = r.data;
 
-					return deffered.promise;		
+							},
+							function (error) {
+								pendingArticlesDeffered.reject(error);
+								pendingArticlesDeffered = undefined;
+							}
+						);	
+					}		
+
+					return pendingArticlesDeffered.promise;
 				},
 
-				add: function (article) {
-					this.publish("articleAdded", article);
-				}
+				changeStatus: function (article, status) {
+					cache.forEach(function (storedArticle) {
+						if (article === storedArticle) {
+							storedArticle.status = status;
+						}
+					});
+				},
+
+				add: function (article, selectedGroup) {
+					// perform server call
+
+					cache.push(article);
+
+					//this.publish("articleAdded", article);
+				},
+
+				delete: function (article) {
+					cache.forEach(function (storedArticle) {
+						if (article === storedArticle) {
+							// do server call
+							cache.splice(cache.indexOf(article), 1);
+						}
+					});
+				},
 			};	
 		}
 	};

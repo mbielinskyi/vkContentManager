@@ -1,4 +1,3 @@
-<!-- <h3 class="md-display-2" layout-padding>Available Groups</h3> -->
 <md-list-item ng-repeat="group in $ctrl.groups" ng-click="$ctrl.onSelect({group: group})" class="noright">
 	<md-divider ng-if="!$last"></md-divider>
     <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />

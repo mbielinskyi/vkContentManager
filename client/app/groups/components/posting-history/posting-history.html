@@ -1,0 +1,18 @@
+<md-input-container style="margin-right: 10px;">
+  <label>Sorting</label>
+  <md-select ng-model="$ctrl.sortBy">
+    <md-option ng-repeat="sortingType in $ctrl.sortingTypes" value="{{sortingType.value}}">{{sortingType.name}}</md-option>
+  </md-select>
+</md-input-container>
+<md-card ng-repeat="article in $ctrl.articles | filter:{status:2} | orderBy:$ctrl.sortBy track by $index">
+    </md-card-title>
+    <md-card-content>
+      <p>
+      	{{ article.text }}
+      </p>
+      <md-divider></md-divider>
+      <p>
+      	Posted: {{article.postedOn | date:"MM/dd/yyyy 'at' hh:mm:ss"}}
+      </p>
+    </md-card-content>
+</md-card>

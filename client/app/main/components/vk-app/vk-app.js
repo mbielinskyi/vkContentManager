@@ -8,41 +8,28 @@ define([], function () {
 		}
 	};
 
-	function AppComponent ($q, groupsContainer, articlesContainer) {
+	function AppComponent ($q, groupsStorage, articlesContainer, articlePostingQueue) {
 		var $ctrl = this;
 
 		$ctrl.groups = [];
+		
 		$ctrl.groupsDeffered = $q.defer();
 		$ctrl.groupsPromise = $ctrl.groupsDeffered.promise;
 
-		articlesContainer.on("articleAdded", function (article) {
-			$ctrl.articles.push(article);
-
-			// updating articles list
-			$ctrl.selectedArticles.push(article);
-		});
-
 		$ctrl.changeSelectedGroup = function (group) {
 			$ctrl.selectedGroup = group;
-			$ctrl.selectedArticles = $ctrl.articles.filter(function (el) {
-				return el.ownerId === -group.gid;
-			});
 		};
 
-		groupsContainer.query().then(function (groups) {			
+		groupsStorage.query().then(function (groups) {			
 			$ctrl.groupsDeffered.resolve(groups);
 
 			$ctrl.groupsPromise.then(function (groups) {
 				$ctrl.groups = groups;
 				$ctrl.selectedGroup = $ctrl.groups[0];
 
+				//initialize services for article storing
+
 				return groups;
-			});
-
-			articlesContainer.query().then(function (articles) {
-				$ctrl.articles = articles;
-
-				$ctrl.changeSelectedGroup($ctrl.selectedGroup);
 			});
 		});	
 	}

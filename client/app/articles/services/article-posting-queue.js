@@ -4,52 +4,25 @@ define([], function () {
 
 		fn: function ArticlePostingQueueService ($interval, articlePoster) {
 			var activatedGroupsList = [
-					-50732577,
-					-72099551,
-					-51880934,
-					-116462359,
-					-52776178
+					// -50732577,
+					// -72099551,
+					// -51880934,
+					// -116462359,
+					// -52776178
 				];
-			var queue = [
-					// {
-					// 	ownerId: -50732577,
-					// 	scheduledPostDate: (new Date().valueOf() + 10000),
-					// 	text: "Русский текст"  
-					// },
-					// {
-					// 	ownerId: -50732577,
-					// 	scheduledPostDate: (new Date().valueOf() + 12000),
-					// 	text: "some new text to be posted"  
-					// },
-					// {
-					// 	ownerId: -72099551,
-					// 	scheduledPostDate: (new Date().valueOf() + 14000),
-					// 	text: "some new new text to be posted"  
-					// },
-					// {
-					// 	ownerId: -52776178,
-					// 	scheduledPostDate: (new Date().valueOf() + 16000),
-					// 	text: "some new new new text to be posted"  
-					// },
-					// {
-					// 	ownerId: -51880934,
-					// 	scheduledPostDate: (new Date().valueOf() + 18000),
-					// 	text: "some new new new new text to be posted"  
-					// },
-					// {
-					// 	ownerId: -51880934,
-					// 	scheduledPostDate: (new Date().valueOf() + 30000),
-					// 	text: "some new new new new new text to be posted"  
-					// }
-				];
+			var queue = [];
+			var subscriptions = {
+					"articlePosted": []
+				};
 			var checkExpiredInterval;
 
 			function checkForExpiredDelays () {
 				for (var i = 0; i < queue.length; i++) {
-					var shouldBePostedNow = queue[i].scheduledPostDate < (new Date());
+					var shouldBePostedNow = queue[i].scheduledPostDate < (new Date()).valueOf();
 					var postingActivated = activatedGroupsList.indexOf(queue[i].ownerId) !== -1;
 
 					if (shouldBePostedNow && postingActivated) {
+						 publish("articlePosted", queue[i]);
 						 articlePoster.add(queue.splice(i, 1)[0]);
 					}
 				}
@@ -103,13 +76,33 @@ define([], function () {
 				}
 			}
 
+			function publish (eventName) {
+				var args = Array.prototype.slice.call(arguments, 1);
+
+				subscriptions[eventName].forEach(function (cb) {
+					cb.apply(null, args);
+				});
+			}
+
 			// by default we are activating monitoring
 			startChecking();
 
 			return {
+				on: function (eventName, cb) {
+					if (subscriptions[eventName] === undefined) return;
+
+					subscriptions[eventName].push(cb);
+				},
+
 				add: function (article) {
 					article.scheduledPostDate = getLaytestScheduledDate(article.ownerId) + article.delay;
 					queue.push(article);
+
+					checkForEmptyQueue();
+				},
+
+				remove: function (article) {
+					queue.splice(queue.indexOf(article), 1);
 
 					checkForEmptyQueue();
 				},
@@ -132,12 +125,19 @@ define([], function () {
 							}
 						});
 
-						activatedGroupsList.push(groupId);
+						activatedGroupsList.push(-groupId);
 					}
 				},
 
 				getAutopostingState: function (groupId) {
 					return activatedGroupsList.indexOf(groupId * -1) !== -1;
+				},
+
+				getQueueListById: function (id) {
+					return queue;
+					// return queue.filter(function (article) {
+					// 	return article.ownerId === id * -1;
+					// });
 				}
 			};	
 		}

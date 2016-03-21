@@ -1,23 +1,34 @@
-<md-tabs md-border-bottom>
-	<md-tab label="Details">
-			<h1 class="md-display-2">Details</h1>
-			<br>
-			<h3>Group name: {{$ctrl.selectedGroup.name}}</h3>
-			<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
-			<br>
-			<p>Group ID: {{$ctrl.selectedGroup.gid}}</p>
-			<br>
+<div layout="row">
+	<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
+	<div layout-margin layout="column">
+		<h3>{{$ctrl.selectedGroup.name}}</h3>		
+		<p>ID: {{$ctrl.selectedGroup.gid}}</p>
+	</div>
+
+</div>
+
+
+
+
+<md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="Articles" layout-margin>
+	 	<md-content class="md-padding">	
+			<articles-list articles="$ctrl.selectedGroup.articles" on-delete="" on-add-to-queue=""></articles-list>
+		</md-content>			
 	</md-tab>
-	<md-tab label="Articles">
-		  	<h1 class="md-display-2">Articles</h1>
-			<articles-list articles="$ctrl.articles" on-queue=""></articles-list>
+	<md-tab label="Posting Queue" layout-margin>
+	 	<md-content class="md-padding">	
+			<posting-queue articles="$ctrl.selectedGroup.articles"></posting-queue>
+		</md-content>
 	</md-tab>
-	<md-tab label="Posting History">
-		  	<h1 class="md-display-2">Posting History</h1>
-			<p>Here will be Posting History component</p>
+	<md-tab label="Posting History" layout-margin>
+	 	<md-content class="md-padding">	
+			<posting-history articles="$ctrl.selectedGroup.articles">
+		</md-content>
 	</md-tab>
-	<md-tab label="New Article">
-		  	<h1 class="md-display-2">New Article</h1>
+	<md-tab label="New Article" layout-margin>
+	 	<md-content class="md-padding">	
 			<new-content on-save="$ctrl.addArticle(article)"></new-content>
+		</md-content>
 	</md-tab>
 </md-tabs>

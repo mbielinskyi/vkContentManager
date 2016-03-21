@@ -1,5 +1,5 @@
 define([], function () {
-	function GroupsListComponent (articlePostingQueue, groupsContainer) {
+	function GroupsListComponent (articlePostingQueue, groupsStorage) {
 		var $ctrl = this;
 
 		$ctrl.groups = [];

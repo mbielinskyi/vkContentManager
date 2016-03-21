@@ -13,13 +13,18 @@
   }
 
   md-whiteframe {
-    background: #ffffff;    
+    background: #ffffff;     
   }
 
+  md-tabs-canvas{ overflow: inherit; }
+  
   app {
     height: 100%;
     width: 100%;
   }
+
+
+
   </style>
   <link rel="stylesheet" href="app/main/components/vk-app/vk-app.css">
   <link rel="stylesheet" href="app/groups/components/group-details/group-details.css">
@@ -35,6 +40,6 @@
   <script data-main="app/main" src="lib/require.js"></script>
 </head>
 <body>
-  <app  flex="100" layout="column" ng-cloak></app>
+  <app flex layout="column" ng-cloak></app>
 </body>
 </html>

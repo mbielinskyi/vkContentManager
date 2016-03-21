@@ -1,4 +1,5 @@
-<md-toolbar>
+<!-- TODO: Should be moved to MENU component -->
+<md-toolbar >
   	<div class="md-toolbar-tools">
 	    <md-button class="md-icon-button" aria-label="Settings">
 	      	<md-icon></md-icon>
@@ -16,12 +17,26 @@
   	</div>
 </md-toolbar>
 
-<div flex layout="row">
-<md-whiteframe class="md-whiteframe-1dp" layout-margin layout="column">
-	<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>	
-</md-whiteframe>
 
-<md-whiteframe flex class="md-whiteframe-1dp" layout-margin layout="column"> 
-	<group-details selected-group="$ctrl.selectedGroup" articles="$ctrl.selectedArticles"></group-details>	
-</md-whiteframe> 
+<div flex layout="row">
+	<md-whiteframe layout-margin flex="30" class="md-whiteframe-1dp" >
+
+		<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
+
+	</md-whiteframe>
+
+	<md-whiteframe layout-margin flex="70" class="md-whiteframe-1dp">
+		<md-content>
+		<group-details 
+			selected-group="$ctrl.selectedGroup">
+		</group-details>
+		</md-content>		
+	</md-whiteframe>
+
 </div>
+
+<!-- <div flex layout="row">
+	<md-whiteframe layout-margin flex class="md-whiteframe-1dp" >
+		<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
+	</md-whiteframe>
+</div> -->

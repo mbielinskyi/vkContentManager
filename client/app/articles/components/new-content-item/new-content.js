@@ -6,19 +6,28 @@ define([], function () {
 		$ctrl.selectedDate = new Date();
 		$ctrl.minDate = new Date();
 
-		$ctrl.article = {
-			text: "",
-			delay: 1000,
-			scheduledPostDate: (new Date()).valueOf(),
-			author: "Maksim Bielinskyi"
-		};
+		function getDefaultArticle () {
+			return {
+				text: "",
+				status: 0,
+				delay: 1000,
+				scheduledPostDate: (new Date()).valueOf(),
+				author: "Maksim Bielinskyi"
+			};
+		}
 
+		$ctrl.article = getDefaultArticle();
+
+		// TODO: this method should save article to server
+		// using only articleContainer service
 		$ctrl.save = function () {
 			$ctrl.article.creationDate = (new Date()).valueOf();
 			
 			
 			$ctrl.onSave({article: $ctrl.article});
 			$ctrl.collapsed = !$ctrl.collapsed;
+
+			$ctrl.article = getDefaultArticle();
 		};
 
 		$ctrl.toggleState = function () {

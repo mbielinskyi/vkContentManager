@@ -1,12 +1,21 @@
 define([], function () {
-	function ArticlesListComponent ($interval, articlePostingQueue) {
+	function ArticlesListComponent ($interval, articlePostingQueue, articlesContainer) {
 		var $ctrl = this;
 
 		$ctrl.articles = [];
 
 		$ctrl.addToQueue = function (article) {
+			articlesContainer.changeStatus(article, 1);
+
 			articlePostingQueue.add(article);
-			$ctrl.articles.splice($ctrl.articles.indexOf(article), 1);
+
+			$ctrl.onAddToQueue({article: article});
+		};
+
+		$ctrl.deleteArticle = function (article) {
+			articlesContainer.changeStatus(article, 3);
+
+			$ctrl.onDelete({article: article});
 		};
 
 		$ctrl.isExpired = function (article) {
@@ -46,7 +55,8 @@ define([], function () {
 			templateUrl: 'app/articles/components/articles-list/articles-list.html',
 			bindings: {
 				articles: "<",
-				onSelect: "&"
+				onDelete: "&",
+				onAddToQueue: "&"
 			},
 			controller: ArticlesListComponent
 		}

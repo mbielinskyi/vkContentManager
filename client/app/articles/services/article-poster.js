@@ -14,6 +14,10 @@ define([], function () {
 				$http.post("http://localhost:3000/post-to-wall", {message: articleToBePosted})
 					.then(function (r) {
 						console.log(r);
+
+						// consider adding Posted On date here
+
+
 					});
 
 				checkForEmptyQueue();

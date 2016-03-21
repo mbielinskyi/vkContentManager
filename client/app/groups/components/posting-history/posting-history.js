@@ -1,18 +1,39 @@
 define([], function () {
 	return {
-		name: "postingQueue",
+		name: "postingHistory",
 
 		config: {
-			templateUrl: 'app/groups/components/posting-queue/posting-queue.html',
+			templateUrl: 'app/groups/components/posting-history/posting-history.html',
 			bindings: {
 				articles: "<"
 			},
-			controller: PostingQueueComponent
+			controller: PostingHistoryComponent
 		}
 	};
 
-	function PostingQueueComponent (articlePostingQueue, articlesContainer, articlePoster) {
+	function PostingHistoryComponent (articlePostingQueue, articlesContainer, articlePoster) {
 		var $ctrl = this;
+
+		$ctrl.sortBy = "date";
+
+		$ctrl.sortingTypes = [
+			{
+				name: "from New to Old",
+				value: "-postedOn"
+			},
+			{
+				name: "from Old to New",
+				value: "postedOn"
+			},
+			{
+				name: "by Content",
+				value: "text"
+			},
+			{
+				name: "by Author",
+				value: "author"
+			}
+		];
 
 		$ctrl.articles = [];
 
@@ -36,7 +57,6 @@ define([], function () {
 		};
 
 		articlePostingQueue.on("articlePosted", function (article) {
-			article.postedOn = new Date();
 			articlesContainer.changeStatus(article, 2);
 		});
 
