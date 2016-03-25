@@ -1,18 +1,31 @@
-<label>Posting date</label>
-<md-datepicker style="margin-bottom: 14px;" 
-	ng-model="$ctrl.selectedDate" 
-	md-placeholder="Enter date"
-    md-min-date="$ctrl.minDate"
-    ng-change = "$ctrl.checkDate()"
-    >
-</md-datepicker>
+<div layout="column">
+	<label>Posting date</label>
+	<md-datepicker style="margin-bottom: 14px;" 
+		ng-model="$ctrl.selectedDate" 
+		md-placeholder="Enter date"
+	    md-min-date="$ctrl.minDate"
+	    ng-change = "$ctrl.checkDate()"
+	    >
+	</md-datepicker>
 
-<md-input-container class="md-block">
-	<label>Posting time</label>
-	<input type="text" ng-model="$ctrl.time" ng-list=":" ng-change="$ctrl.checkTimeFormat()" required>
-</md-input-container>
 
-<md-input-container class="md-block">
-    <label>Posting delay in seconds</label>
-    <input type="number" name="postalCode" ng-model="$ctrl.delay" ng-change="$ctrl.checkDelay()" placeholder="1" required>
-</md-input-container>
+	<md-input-container class="md-block">
+		<label>Posting time</label>
+		<input type="text" ng-model="$ctrl.time" ng-list=":" ng-change="$ctrl.checkTime()" required>
+	</md-input-container>
+			<label>units</label>	
+	<div layout="row">
+		<md-input-container class="md-block">
+			<label>units</label>
+	        <md-select ng-model="$ctrl.selectedDelayUnit" ng-change="$ctrl.checkDelay()">
+	          <md-option ng-repeat="delayUnit in $ctrl.delayUnits" value="{{delayUnit}}">
+	            {{delayUnit}}
+	          </md-option>
+	        </md-select>
+		</md-input-container>
+		<md-input-container class="md-block">
+		    <label>Posting delay</label>
+		    <input type="number" ng-model="$ctrl.delay" ng-change="$ctrl.checkDelay()" required>
+		</md-input-container>	
+	</div>
+</div>

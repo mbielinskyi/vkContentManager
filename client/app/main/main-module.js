@@ -1,14 +1,16 @@
 define([
 	'../groups/groups-module',
+	'main/services/date-tools',
 	'main/components/vk-app/vk-app',
 	'main/components/my-tabs/my-tabs',
 	'main/components/my-pane/my-pane',
 	'main/components/time-picker/time-picker',	
-], function (groups, vkAppComponent, myTabsComponent, myPaneComponents, timePickerComponent) {
+], function (groups, dateToolsService, vkAppComponent, myTabsComponent, myPaneComponents, timePickerComponent) {
 	var moduleName = 'app';
 
 	angular
 		.module(moduleName, [groups, 'ngMaterial', 'ngAnimate', 'ngAria', 'ngMessages'])
+		.service(dateToolsService.name, dateToolsService.fn)
 		.component(vkAppComponent.name, vkAppComponent.config)
 		.component(myTabsComponent.name, myTabsComponent.config)
 		.component(myPaneComponents.name, myPaneComponents.config)
@@ -31,6 +33,23 @@ define([
 				timeString += ("00" + minutes).substr(-2) + ":";
 				timeString += ("00" + seconds % SEC_IN_MIN).substr(-2);
 			    return timeString;
+			};
+		})
+		.filter('odd', function () {
+			return function (array) {
+				if (!array) return array;
+
+				return array.filter(function (el, index) {
+					return index %2 === 0;
+				});
+			};
+		}).filter('even', function () {
+			return function (array) {
+				if (!array) return array;
+
+				return array.filter(function (el, index) {
+					return index % 2 !== 0;
+				});
 			};
 		});
 

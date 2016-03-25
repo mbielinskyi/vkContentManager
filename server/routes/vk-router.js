@@ -1,6 +1,5 @@
 var express = require('express'),
-	router = express.Router(),
-	articles = require("../articles-mock");
+	router = express.Router();
 
 //guess new better name later
 var vkAPIConstructor = require("vk-api");

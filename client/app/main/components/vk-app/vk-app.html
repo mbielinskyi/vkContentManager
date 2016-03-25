@@ -1,5 +1,5 @@
 <!-- TODO: Should be moved to MENU component -->
-<md-toolbar >
+<md-toolbar  style="min-width: 1132px">
   	<div class="md-toolbar-tools">
 	    <md-button class="md-icon-button" aria-label="Settings">
 	      	<md-icon></md-icon>
@@ -19,19 +19,16 @@
 
 
 <div flex layout="row">
-	<md-whiteframe layout-margin flex="30" class="md-whiteframe-1dp" >
+	<md-whiteframe style="min-width: 400px" layout-margin flex="30" class="md-whiteframe-1dp" >
 
 		<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
 
 	</md-whiteframe>
 
-	<md-whiteframe layout-margin flex="70" class="md-whiteframe-1dp">
-		<md-content>
-		<group-details 
-			selected-group="$ctrl.selectedGroup">
-		</group-details>
-		</md-content>		
-	</md-whiteframe>
+	<!-- <md-whiteframe layout-margin flex="70" class="md-whiteframe-1dp"> -->
+		<group-details layout="column" flex="70" selected-group="$ctrl.selectedGroup">
+		</group-details>	
+	<!-- </md-whiteframe> -->
 
 </div>
 

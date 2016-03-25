@@ -30,6 +30,12 @@ define([], function () {
 				checkForEmptyQueue();
 			}
 
+
+			// returns date when last queued article will be posted
+			// if currently added article is expired
+			// this method should update it's posting date
+			// adding it's delay to Date returned
+			// by this method
 			function getLaytestScheduledDate (requestedOwnerId) {
 				// if queue is empty
 				if (queue.length === 0) {
@@ -95,7 +101,6 @@ define([], function () {
 				},
 
 				add: function (article) {
-					article.scheduledPostDate = getLaytestScheduledDate(article.ownerId) + article.delay;
 					queue.push(article);
 
 					checkForEmptyQueue();

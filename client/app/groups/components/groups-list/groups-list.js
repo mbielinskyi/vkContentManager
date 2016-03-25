@@ -14,6 +14,7 @@ define([], function () {
 		function updateGroupsActivationState (groups) {
 			groups.forEach(function (group) {
 				group.isActive = articlePostingQueue.getAutopostingState(group.gid);
+				
 			});
 		}
 

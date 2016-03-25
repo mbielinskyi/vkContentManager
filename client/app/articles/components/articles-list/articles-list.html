@@ -2,37 +2,15 @@
     .expiredArticle {
     	color: red;
     }
-</style>	
-<md-grid-list
-        md-cols="6"
-		md-row-height="350px"
-        md-gutter="-10px">
-    <md-grid-tile ng-repeat="article in $ctrl.articles | filter:{status:0} track by $index">
-    <md-content flex layout-padding>
-		<md-card>
-	        </md-card-title>
-	        <md-card-content>
-	          <p>
-	          	{{ article.text }}
-	          </p>
-	          <md-divider></md-divider>
-	          <p>
-	          	Created: {{article.creationDate | date:"MM/dd/yyyy h:mma"}}
-	          </p>
-	          <p>
-	          	Scheduled: 
-	          	<span ng-class="{expiredArticle: article.isExpired}">
-	          		{{article.isExpired? "expired": article.scheduledPostDate | date:"MM/dd/yyyy 'at' hh:mm:ss"}}
-	          	</span>
-	          </p>
-	          <p ng-if="!article.isExpired">Will expire in: {{article.willExpireIn | millSecondsToTimeString}}</p>
-	        </md-card-content>
+</style>
 
-	        <md-card-actions layout="row" >
-	          	<md-button flex class="md-raised md-warn" ng-click="$ctrl.deleteArticle(article)">delete</md-button>
-	          	<md-button flex class="md-raised md-primary" ng-click="$ctrl.addToQueue(article)">add to queue</md-button>
-	        </md-card-actions>
-	    </md-card>
-	<md-content>    
-    </md-grid-tile>
-</md-grid-list>
+<md-content layout="row" flex>
+	<div flex layout="column">
+		<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | filter:{status:0} | odd">
+	    </my-article>
+	</div> 
+	<div flex layout="column">
+		<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | filter:{status:0} | even">
+	    </my-article>
+	</div> 
+</md-content>

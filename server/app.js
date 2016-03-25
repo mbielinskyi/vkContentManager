@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var VKRoutes = require('./routes/vk-router');
+var VKRouter = require('./routes/vk-router');
+var dataRouter = require('./routes/data-router');
 
 var app = express();
 
@@ -25,7 +26,9 @@ app.use(express.static("../client"));
 
 
 // passing all requests to router
-app.use('/', VKRoutes);
+app.use('/articles', dataRouter);
+app.use('/', VKRouter);
+
 
 
 

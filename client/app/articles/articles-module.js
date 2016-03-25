@@ -4,9 +4,21 @@ define([
 	'articles/components/articles-list/articles-list',
 	'articles/services/article-poster',
 	'articles/services/article-posting-queue',
-	'articles/components/new-content-item/new-content'
+	'articles/components/new-article-item/new-article',
+	'articles/components/saved-article/saved-article',
+	'articles/components/queued-article/queued-article',
+	'articles/components/posted-article/posted-article'
 
-], function (articlesContainer, articlesListComponent, articlePoster, articlePostingQueue, newContentComponent) {
+], function (
+		articlesContainer, 
+		articlesListComponent, 
+		articlePoster, 
+		articlePostingQueue, 
+		newContentComponent, 
+		savedArticleComponent,
+		queuedArticleComponent,
+		postedArticleComponent
+	) {
 	var moduleName = 'articles';
 	
 	angular
@@ -15,7 +27,10 @@ define([
 		.service(articlePoster.name, articlePoster.fn)
 		.service(articlePostingQueue.name, articlePostingQueue.fn)
 		.component(articlesListComponent.name, articlesListComponent.config)
-		.component(newContentComponent.name, newContentComponent.config);
+		.component(newContentComponent.name, newContentComponent.config)
+		.component(savedArticleComponent.name, savedArticleComponent.config)
+		.component(queuedArticleComponent.name, queuedArticleComponent.config)
+		.component(postedArticleComponent.name, postedArticleComponent.config);
 
 	return moduleName;
 });

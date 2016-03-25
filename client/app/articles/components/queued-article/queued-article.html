@@ -1,0 +1,24 @@
+<md-card>
+    </md-card-title>
+    <md-card-content>
+      <p>
+        {{ $ctrl.article.text }}
+      </p>
+      <md-divider></md-divider>
+      <p>
+        Created: {{ $ctrl.article.creationDate | date:"MM/dd/yyyy h:mma" }}
+      </p>
+      <p>
+        Scheduled: 
+        <span ng-class="{expiredArticle: $ctrl.article.isExpired}">
+          {{ $ctrl.article.isExpired? "expired": $ctrl.article.scheduledPostDate | date:"MM/dd/yyyy 'at' hh:mm:ss" }}
+        </span>
+      </p>
+      <p ng-if="!$ctrl.article.isExpired">Will expire in: {{ $ctrl.article.willExpireIn | millSecondsToTimeString }}</p>
+    </md-card-content>
+
+    <md-card-actions layout="row" >
+        <md-button class="md-raised md-warn" ng-click="$ctrl.removeFromQueue()">remove from queue</md-button>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.postNow()">post now</md-button>
+    </md-card-actions>
+</md-card>

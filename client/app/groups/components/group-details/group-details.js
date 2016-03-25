@@ -1,5 +1,5 @@
 define([], function () {
-	function GroupDetailsComponent (articlesContainer, groupsStorage) {
+	function GroupDetailsComponent (articlesContainer, groupsStorage, dateTools) {
 		var $ctrl = this;
 
 		$ctrl.articles = [];	
@@ -10,7 +10,19 @@ define([], function () {
 		// does nothing with posting
 		$ctrl.addArticle = function (article) {
 			article.ownerId = $ctrl.selectedGroup.gid * -1;
-			groupsStorage.addArticleToGroup(article, $ctrl.selectedGroup);
+			article.creationDate = dateTools.getNow().ms;
+
+
+			// ssaving to server
+			// adding to collection on view upon server request
+			articlesContainer.add(article).then(
+				function (response) {
+					groupsStorage.addArticleToGroup(article, $ctrl.selectedGroup);
+				},
+				function (err) {
+					console.log("Ooops! Seems like article was not saved")
+				}
+			);
 		};
 	}
 

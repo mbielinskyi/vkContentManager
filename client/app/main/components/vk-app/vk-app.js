@@ -12,7 +12,7 @@ define([], function () {
 		var $ctrl = this;
 
 		$ctrl.groups = [];
-		
+
 		$ctrl.groupsDeffered = $q.defer();
 		$ctrl.groupsPromise = $ctrl.groupsDeffered.promise;
 

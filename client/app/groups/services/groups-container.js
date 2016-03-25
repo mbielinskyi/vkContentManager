@@ -64,11 +64,10 @@ define([], function () {
 				addArticleToGroup: function (article, group) {
 					groupsCache.forEach(function (storedGroup) {
 						if (storedGroup === group) {
+							article.ownerId = $ctrl.selectedGroup.gid * -1;
 							storedGroup.articles.push(article);
 						}
 					});
-
-					articlesContainer.add(article);
 				}
 			};	
 		}

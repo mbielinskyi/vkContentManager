@@ -16,25 +16,12 @@ define([], function () {
 
 		$ctrl.articles = [];
 
-		$ctrl.removeFromQueue = function (article) {
-			//change status to 0
-			articlesContainer.changeStatus(article, 0);
-
-			// remove from queue service
-			articlePostingQueue.remove(article);
-			// TODO
+		$ctrl.log = function () {
+			console.dir($ctrl.articles);
 		};
 
-		$ctrl.postNow = function (article) {
-			// remove from queue service
-			articlePostingQueue.remove(article);
-			//TODO
 
-			//move to article-poster service
-			articlePoster.add(article);
-			//TODO
-		};
-
+		// sending article to poster after it has become expired
 		articlePostingQueue.on("articlePosted", function (article) {
 			article.postedOn = new Date();
 			articlesContainer.changeStatus(article, 2);

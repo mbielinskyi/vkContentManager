@@ -31,7 +31,7 @@ define([], function () {
 					if (!pendingArticlesDeffered) {
 						pendingArticlesDeffered = $q.defer();
 
-						$http.get("http://localhost:3000/content-items").then(
+						$http.get("http://localhost:3000/articles").then(
 							function (r) {
 								pendingArticlesDeffered.resolve(r.data);
 								pendingArticlesDeffered = undefined;
@@ -57,20 +57,47 @@ define([], function () {
 				},
 
 				add: function (article, selectedGroup) {
+					var saveDeffered = $q.defer();
 					// perform server call
+					$http.put("http://localhost:3000/articles", article).then(
+						function (r) {
+							saveDeffered.resolve(r.data);
+							saveDeffered = undefined;
+							cache.push(r.data.ops[0]);
+						},
+						function (error) {
+							saveDeffered.reject(error);
+							saveDeffered = undefined;
+						}
+					);
 
-					cache.push(article);
-
-					//this.publish("articleAdded", article);
+					return saveDeffered.promise;
 				},
 
 				delete: function (article) {
-					cache.forEach(function (storedArticle) {
-						if (article === storedArticle) {
-							// do server call
-							cache.splice(cache.indexOf(article), 1);
+					// perform server call
+					var deleteDeffered = $q.defer();
+
+					$http.delete("http://localhost:3000/articles/" + article._id, article).then(
+						function (r) {
+							deleteDeffered.resolve(r.data);
+							deleteDeffered = undefined;
+
+							// remove from cache
+							cache.forEach(function (storedArticle, i) {
+								if (storedArticle._id === article._id) {
+									cache.splice(cache.indexOf(article), 1);
+								}
+							});
+						},
+						function (error) {
+							deleteDeffered.reject(error);
+							deleteDeffered = undefined;
 						}
-					});
+					);
+
+					return deleteDeffered.promise;
+
 				},
 			};	
 		}

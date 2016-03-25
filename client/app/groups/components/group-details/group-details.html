@@ -1,34 +1,30 @@
-<div layout="row">
+<!-- group details -->
+<md-whiteframe style="min-width: 700px" class="md-whiteframe-1dp" layout-margin style="min-height: 100px" layout="row">
 	<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
 	<div layout-margin layout="column">
 		<h3>{{$ctrl.selectedGroup.name}}</h3>		
 		<p>ID: {{$ctrl.selectedGroup.gid}}</p>
 	</div>
+</md-whiteframe>
+<md-whiteframe style="min-width: 700px" class="md-whiteframe-1dp" layout-margin flex layout = "column">
+	<md-tabs layout="column" flex md-border-bottom>
+		<md-tab layout="column" flex  label="Articles ({{($ctrl.selectedGroup.articles | filter:{status:0}).length}})">
+				<my-articles-list columns="2" flex layout="column" articles="$ctrl.selectedGroup.articles" on-delete="" on-add-to-queue=""></articles-list>
+		</md-tab>
+		<md-tab layout="column" flex  label="Posting Queue ({{($ctrl.selectedGroup.articles | filter:{status:1}).length}})">
 
-</div>
+				<posting-queue articles="$ctrl.selectedGroup.articles"></posting-queue>
 
+		</md-tab>
+		<md-tab layout="column" flex  label="Posting History ({{($ctrl.selectedGroup.articles | filter:{status:2}).length}})">
 
+				<posting-history articles="$ctrl.selectedGroup.articles">
 
+		</md-tab>
+		<md-tab layout="column" flex  label="New Article" layout-margin>
 
-<md-tabs md-dynamic-height md-border-bottom>
-	<md-tab label="Articles" layout-margin>
-	 	<md-content class="md-padding">	
-			<articles-list articles="$ctrl.selectedGroup.articles" on-delete="" on-add-to-queue=""></articles-list>
-		</md-content>			
-	</md-tab>
-	<md-tab label="Posting Queue" layout-margin>
-	 	<md-content class="md-padding">	
-			<posting-queue articles="$ctrl.selectedGroup.articles"></posting-queue>
-		</md-content>
-	</md-tab>
-	<md-tab label="Posting History" layout-margin>
-	 	<md-content class="md-padding">	
-			<posting-history articles="$ctrl.selectedGroup.articles">
-		</md-content>
-	</md-tab>
-	<md-tab label="New Article" layout-margin>
-	 	<md-content class="md-padding">	
-			<new-content on-save="$ctrl.addArticle(article)"></new-content>
-		</md-content>
-	</md-tab>
-</md-tabs>
+				<new-content group="$ctrl.selectedGroup" on-save="$ctrl.addArticle(article)"></new-content>
+
+		</md-tab>
+	</md-tabs>
+</md-whiteframe class="md-whiteframe-1dp" layout-margin>
