@@ -3,10 +3,18 @@ define([], function () {
 		var $ctrl = this;
 
 		$ctrl.addToQueue = function () {
-			articlesContainer.changeStatus($ctrl.article, 1);
+			$ctrl.article.status = 1;
+
+			// updating scheduled date if it has expired
+			if ($ctrl.article.scheduledPostDate < (new Date()).valueOf()) {
+				$ctrl.article.scheduledPostDate = (new Date()).valueOf() + $ctrl.article.delay;
+				$ctrl.article.isExpired = false;
+			}
+
+			articlesContainer.update($ctrl.article);
 
 			// this should be done over server request
-			articlePostingQueue.add($ctrl.article);
+			// articlePostingQueue.add($ctrl.article);
 
 			// 1. request server to update status to 1
 			// 2. upon response update article with new status
@@ -19,31 +27,33 @@ define([], function () {
 			// articlesContainer.changeStatus($ctrl.article, 3);
 		};
 
-		function checkExpirationState () {
-			// TODO: add logic to disable timer
-			// if there is no articles or all expired
+		$ctrl.edit = function () {};
 
-			var now = (new Date()).valueOf();
+		// function checkExpirationState () {
+		// 	// TODO: add logic to disable timer
+		// 	// if there is no articles or all expired
 
-			// Displaying on UI
-			$ctrl.article.willExpireIn = $ctrl.article.scheduledPostDate - now;
+		// 	var now = (new Date()).valueOf();
 
-			if ($ctrl.article.isExpired) {
-				$interval.cancel(expirationInterval);
-				return;
-			}
+		// 	// Displaying on UI
+		// 	$ctrl.article.willExpireIn = $ctrl.article.scheduledPostDate - now;
 
-			if ($ctrl.article.scheduledPostDate <= now ) {
-				$ctrl.article.isExpired = true;
-				$interval.cancel(expirationInterval);
-			}
-		}
+		// 	if ($ctrl.article.isExpired) {
+		// 		$interval.cancel(expirationInterval);
+		// 		return;
+		// 	}
 
-		$ctrl.$onInit = function () {
-			checkExpirationState();
-		};
+		// 	if ($ctrl.article.scheduledPostDate <= now ) {
+		// 		$ctrl.article.isExpired = true;
+		// 		$interval.cancel(expirationInterval);
+		// 	}
+		// }
 
-		var expirationInterval = $interval(checkExpirationState, 1000);
+		// $ctrl.$onInit = function () {
+		// 	checkExpirationState();
+		// };
+
+		// var expirationInterval = $interval(checkExpirationState, 1000);
 	}
 
 	return {

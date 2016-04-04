@@ -1,10 +1,8 @@
-
-
 define([], function () {
 	return {
 		name: "articlesContainer",
 
-		fn: function ArticlesService ($q, $http) {
+		fn: function ArticlesContainerService ($q, $http) {
 			var subscriptions= {
 				articleAdded: []
 			};
@@ -31,12 +29,11 @@ define([], function () {
 					if (!pendingArticlesDeffered) {
 						pendingArticlesDeffered = $q.defer();
 
-						$http.get("http://localhost:3000/articles").then(
+						$http.get("http://localhost:3000/rest/articles").then(
 							function (r) {
-								pendingArticlesDeffered.resolve(r.data);
-								pendingArticlesDeffered = undefined;
 								cache = r.data;
-
+								pendingArticlesDeffered.resolve(cache);
+								pendingArticlesDeffered = undefined;
 							},
 							function (error) {
 								pendingArticlesDeffered.reject(error);
@@ -48,18 +45,10 @@ define([], function () {
 					return pendingArticlesDeffered.promise;
 				},
 
-				changeStatus: function (article, status) {
-					cache.forEach(function (storedArticle) {
-						if (article === storedArticle) {
-							storedArticle.status = status;
-						}
-					});
-				},
-
-				add: function (article, selectedGroup) {
+				add: function (article) {
 					var saveDeffered = $q.defer();
 					// perform server call
-					$http.put("http://localhost:3000/articles", article).then(
+					$http.put("http://localhost:3000/rest/articles", article).then(
 						function (r) {
 							saveDeffered.resolve(r.data);
 							saveDeffered = undefined;
@@ -74,11 +63,31 @@ define([], function () {
 					return saveDeffered.promise;
 				},
 
+				update: function (article) {
+					var saveDeffered = $q.defer();
+					// perform server call
+
+
+					$http.put("http://localhost:3000/rest/articles/" + article._id, article).then(
+						function (r) {
+							saveDeffered.resolve(r.data);
+							saveDeffered = undefined;
+							// cache.push(r.data.ops[0]);
+						},
+						function (error) {
+							saveDeffered.reject(error);
+							saveDeffered = undefined;
+						}
+					);
+
+					return saveDeffered.promise;					
+				},
+
 				delete: function (article) {
 					// perform server call
 					var deleteDeffered = $q.defer();
 
-					$http.delete("http://localhost:3000/articles/" + article._id, article).then(
+					$http.delete("http://localhost:3000/rest/articles/" + article._id, article).then(
 						function (r) {
 							deleteDeffered.resolve(r.data);
 							deleteDeffered = undefined;

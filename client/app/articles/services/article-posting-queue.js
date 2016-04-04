@@ -138,11 +138,8 @@ define([], function () {
 					return activatedGroupsList.indexOf(groupId * -1) !== -1;
 				},
 
-				getQueueListById: function (id) {
+				getQueue: function () {
 					return queue;
-					// return queue.filter(function (article) {
-					// 	return article.ownerId === id * -1;
-					// });
 				}
 			};	
 		}

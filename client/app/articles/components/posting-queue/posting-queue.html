@@ -1,0 +1,14 @@
+<md-whiteframe style="width: 300px" class="md-whiteframe-1dp" layout-margin flex layout = "column">
+<div layout="row" style="margin-top: 0;">
+	<p class="queue-widget-heading">Queue</p>
+	<span flex></span>
+	<p class="queue-switcher-label">autoposting:</p>
+	<md-switch class="md-switch-no-margin" ng-model="$ctrl.activated" aria-label="">
+	</md-switch>
+</div>
+	<md-list class="posting-queue" flex layout="column">
+		<md-content flex layout="column">
+			<my-queued-article-short article="article" ng-repeat="article in $ctrl.articles | filter:{status:1} | orderBy:'scheduledPostDate' "></my-queued-article>
+		</md-content>
+	</md-list>
+</md-whiteframe>

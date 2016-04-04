@@ -12,13 +12,13 @@ define([], function () {
 
     myDateTimePickerController.$inject = ["dateTools"];
 
-    function myDateTimePickerController (dateTools) {
+    function myDateTimePickerController (dateTools, Constants) {
         var $ctrl = this;
         var msIn = {
-            'day   ': 24 * 60 * 60 * 1000,
-            'hour  ': 60 * 60 * 1000,
-            'minute': 60 * 1000,
-            'second': 1000            
+            'day   ': Constants.MS_IN_DAY,
+            'hour  ': Constants.MS_IN_HOUR,
+            'minute': Constants.MS_IN_MINUTE,
+            'second': Constants.MS_IN_SECOND            
         };
 
         $ctrl.$onInit = function () {

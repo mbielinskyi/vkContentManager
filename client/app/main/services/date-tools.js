@@ -4,15 +4,19 @@ define([], function () {
 		fn: DateTools
 	};
 
-	function DateTools (millSecondsToTimeStringFilter) {
-	    var MS_IN_DAY = 86400000;
-	    var MS_IN_SEC = 1000;
-	    var SEC_IN_MIN = 60;
-	    var TIME_OFFSET = (new Date()).getTimezoneOffset() * SEC_IN_MIN * MS_IN_SEC;
+	function DateTools (msToTimeFilter, Constants) {
+		var timeOffsetMin = (new Date()).getTimezoneOffset();
+	    var timeOffsetMs = timeOffsetMin * Constants.MS_IN_MINUTE;
 
 		function fixTimeArrayFormat (el, i) {
 			var firstChar = el[0] && parseInt(el[0]);
 			var secondChar = el[1] && parseInt(el[1]);
+
+			// element index corresponds with 
+			// pairs of numbers in time format
+			// 0 - hours
+			// 1 - minutes
+			// 2 - seconds
 			var validations = {
 					0: checkFirstPair,
 					1: checkRemainingPairs,
@@ -67,7 +71,7 @@ define([], function () {
 		return {				
 			getNow: function () {
 				var newDate = new Date();
-				var ms = newDate.valueOf() - TIME_OFFSET;
+				var ms = newDate.valueOf() - timeOffsetMs;
 				return {
 					date: newDate,
 					ms: ms,
@@ -76,9 +80,9 @@ define([], function () {
 				};
 			},
 			getThen: function (_date_) {
-				var date = (_date_ instanceof Date)?_date_:new Date(_date_ + TIME_OFFSET),
+				var date = (_date_ instanceof Date)?_date_:new Date(_date_ + timeOffsetMs),
 					now = this.getNow(), 
-					ms = date.valueOf() - TIME_OFFSET, 
+					ms = date.valueOf() - timeOffsetMs, 
 					delay = ms - now.ms;
 
 				return {
@@ -116,16 +120,16 @@ define([], function () {
 				return timeArray;
 			}, 
 			convertMsToTimeArray: function (ms) {
-				var timeString = millSecondsToTimeStringFilter(ms);
+				var timeString = msToTimeFilter(ms);
 				var timeStringShort = (timeString.length > 8)? timeString.substr(-8): timeString;
 				return timeStringShort.split(":");
 			},
 			convertTimeArrayToMs: function (timeArray) {
 				var ms = 0;
 				var multipliers = {
-						0: 3600000,
-						1: 60000,
-						2: 1000
+						0: Constants.MS_IN_HOUR,
+						1: Constants.MS_IN_MINUTE,
+						2: Constants.MS_IN_SECOND
 					};
 
 				timeArray.forEach(function (el, i) {

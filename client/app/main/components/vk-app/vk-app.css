@@ -1,0 +1,170 @@
+body {
+	background: #efefef;
+}
+
+md-whiteframe {
+	background: #ffffff;     
+}
+
+/*  md-content {
+	background: #efefef;     
+}
+*/
+md-tabs-canvas { 
+	overflow: inherit; 
+}
+
+my-queued-article md-card {
+	background-color: #eaffea;
+}
+
+my-posted-article md-card {
+	background-color: #efefef;
+}
+
+vk-app {
+	height: 100%;
+	width: 100%;
+}
+
+#articles-grid-list figure {
+	display: flex;
+	flex-direction: column;
+	flex: 100;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expiredArticle {
+	color: red;
+}
+
+.selected-group {
+	background-color: #eee; 
+}
+
+.red {
+	color: #f00;
+	font-size: 36px;
+}
+
+.grey {
+	color: #F5F5F5;
+	font-size: 36px;
+}
+
+.dark-grey {
+	color: #000;
+	font-size: 36px;
+}
+
+
+.green {
+	color: #C8E6C9;
+}
+
+.teal {
+	color: #B2DFDB;
+}
+
+md-icon.custom-icon {
+	color: #000;
+	opacity: 0.4;
+}
+
+md-icon.custom-icon:hover {
+	opacity: 0.6;
+}
+
+md-tooltip {
+	opacity: 0.8;
+}
+
+group-details {
+	display: flex;
+	flex: 100;
+}
+
+my-articles-list {
+	display: flex;
+	flex: 100;	
+}
+
+.group-avatar {
+	margin: 2px 6px 0 0;
+	width: 30px;
+	height: 30px;
+}
+
+.queued-article-avatar {
+	margin-right: 6px;
+	width: 30px;
+	height: 30px;	
+}
+
+md-list-item.queue-article-item, md-list-item.queue-article-item md-card,  md-list-item.queue-article-item md-card-content {
+	margin: 0;
+	padding: 0;
+	min-height: 30px;
+}
+
+md-list-item.queue-article-item {
+	margin: 2px;
+}
+
+md-list.posting-queue {
+	padding: 0;
+}
+
+.md-switch-no-margin {
+	margin: 10px 0;
+}
+
+.queue-widget-heading {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.queue-switcher-label {
+	margin: 18px 0;
+	color: grey;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+span.queued-article-timer {
+	font-weight: 600;
+	font-size: 12px;
+	color: green;
+}
+
+span.queued-article-timer.expired {
+	color: red;
+}
+
+span.queued-article-owner-name {
+	font-size: 14px;
+	margin: 0 10px 0 0;	
+}
+
+.no-margin.close-button.cancel-queued-article {
+	margin: 0;
+	font-size: 12px; 
+	line-height: 22px; 
+	font-weight: 600;
+	color:grey;
+	opacity: 0.4;
+}
+
+.no-margin.close-button.cancel-queued-article:hover {
+	opacity: 1;
+}
+
+.md-switch-no-margin {
+	margin: 4px 0;
+}

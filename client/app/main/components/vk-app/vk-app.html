@@ -2,7 +2,11 @@
 <md-toolbar  style="min-width: 1132px">
   	<div class="md-toolbar-tools">
 	    <md-button class="md-icon-button" aria-label="Settings">
-	      	<md-icon></md-icon>
+	        <md-icon
+	            aria-label="name"
+	            class="material-icons step">
+	            menu
+	        </md-icon>
 	    </md-button>
 	    <h2>
 	      	<span>Vkontakte Content Manager</span>
@@ -16,24 +20,11 @@
 	    </md-button>
   	</div>
 </md-toolbar>
+<div layout="row">
+	<ng-outlet layout="column" flex></ng-outlet>
 
-
-<div flex layout="row">
-	<md-whiteframe style="min-width: 400px" layout-margin flex="30" class="md-whiteframe-1dp" >
-
-		<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
-
-	</md-whiteframe>
-
-	<!-- <md-whiteframe layout-margin flex="70" class="md-whiteframe-1dp"> -->
-		<group-details layout="column" flex="70" selected-group="$ctrl.selectedGroup">
-		</group-details>	
-	<!-- </md-whiteframe> -->
-
+ 	<!-- <my-articles-list></my-articles-list> -->
+	<!-- queue widget  -->
+	<posting-queue layout="column"></posting-queue>	
 </div>
 
-<!-- <div flex layout="row">
-	<md-whiteframe layout-margin flex class="md-whiteframe-1dp" >
-		<groups-list elements="$ctrl.groups" groups-promise="$ctrl.groupsPromise" on-select="$ctrl.changeSelectedGroup(group)"></groups-list>
-	</md-whiteframe>
-</div> -->

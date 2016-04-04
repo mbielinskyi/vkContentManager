@@ -11,7 +11,7 @@ define([], function () {
 
 				articleToBePosted = queue.shift();
 
-				$http.post("http://localhost:3000/post-to-wall", {message: articleToBePosted})
+				$http.post("http://localhost:3000/vk-api/post-to-wall", {message: articleToBePosted})
 					.then(function (r) {
 						console.log(r);
 

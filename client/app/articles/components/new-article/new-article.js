@@ -1,13 +1,15 @@
 define([], function () {
-	function NewContentComponent () {
+	function NewContentComponent (articlesContainer, dateTools, groupsStorage) {
 		var $ctrl = this;
 		$ctrl.selectedDate = new Date();
 		$ctrl.minDate = new Date();
-
+		$ctrl.service = articlesContainer;
+		$ctrl.article = getDefaultArticle();
+			console.dir(articlesContainer);
 		// TODO: move this to separate service
-		function getDefaultArticle (articlesContainer, dateTools) {
+		function getDefaultArticle () {
 			var now  = dateTools.getNow();
-
+			console.dir(articlesContainer);
 			return {
 				text: "",
 				status: 0,
@@ -19,9 +21,7 @@ define([], function () {
 			};
 		}
 
-		$ctrl.$onInit = function () {
-			$ctrl.article = getDefaultArticle();			
-		};
+
 
 		// TODO: this method should save article to server
 		// using only articleContainer service
@@ -31,7 +31,7 @@ define([], function () {
 			//$ctrl.onSave({article: $ctrl.article});
 
 			// 1. Add new properties
-			$ctrl.article.creationDate = now.ms();
+			$ctrl.article.creationDate = now.ms;
 			$ctrl.article.ownerId = $ctrl.group.
 
 
@@ -60,7 +60,7 @@ define([], function () {
 	return {
 		name: "newContent",
 		config: {
-			templateUrl: 'app/articles/components/new-content-item/new-content.html',
+			templateUrl: 'app/articles/components/new-article/new-article.html',
 			bindings: {
 				onSave: "&",
 				group: "<"

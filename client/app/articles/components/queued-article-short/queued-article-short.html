@@ -1,0 +1,11 @@
+<md-list-item class="queue-article-item" layout="row">
+      <img class="queued-article-avatar" ng-src="{{$ctrl.article.ownerPhoto}}">
+      <span flex class="queued-article-owner-name truncate">{{$ctrl.article.ownerName}}</span>
+      <span layout="column" class="queued-article-timer" ng-class="{expired: $ctrl.article.isExpired}">
+        {{($ctrl.article.willExpireIn>0)?($ctrl.article.willExpireIn | msToTime): "expired"}}
+      </span>
+      <md-button style="margin:0" class="md-icon-button no-margin" ng-click="$ctrl.removeFromQueue()">
+        <md-icon style="" class="no-margin close-button cancel-queued-article">clear</md-icon>
+      </md-button>
+</md-list-item>
+<md-divider></md-divider>

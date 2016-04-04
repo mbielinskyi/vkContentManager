@@ -4,12 +4,8 @@ define([], function () {
 		var expirationInterval;
 
 		$ctrl.removeFromQueue = function () {
-			//change status to 0
-			articlesContainer.changeStatus($ctrl.article, 0);
-
-			// remove from queue service
-			articlePostingQueue.remove($ctrl.article);
-			// TODO
+			$ctrl.article.status = 0;
+			articlesContainer.update($ctrl.article);
 		};
 
 		$ctrl.postNow = function () {
@@ -20,6 +16,17 @@ define([], function () {
 			//move to article-poster service
 			articlePoster.add($ctrl.article);
 			//TODO
+		};
+
+		// $ctrl.countdown = dateTools.
+
+		$ctrl.getShortName = function () {
+			var ownerName = $ctrl.article.ownerName;
+			var ownerNameLength = ownerName.length;
+			var maxLength = 16;
+			var ownerNameReduced = ownerName.slice(0, maxLength - 3) + "...";
+
+			return (ownerNameLength > 15)? ownerNameReduced: ownerName;
 		};
 
 		function checkExpirationState () {

@@ -13,8 +13,13 @@ define([], function () {
 
 	function PostingHistoryComponent (articlePostingQueue, articlesContainer, articlePoster) {
 		var $ctrl = this;
-
-		$ctrl.sortBy = "date";
+		
+		$ctrl.articles = [];
+		articlesContainer.query().then(
+			function (articles)  {
+				$ctrl.articles = articles;
+			}
+		);
 
 		$ctrl.sortingTypes = [
 			{
@@ -35,6 +40,7 @@ define([], function () {
 			}
 		];
 
+		$ctrl.sortBy = $ctrl.sortingTypes[0];
 		$ctrl.articles = [];
 
 		$ctrl.removeFromQueue = function (article) {

@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var VKRouter = require('./routes/vk-router');
-var dataRouter = require('./routes/data-router');
-
+var restRouter = require('./routes/rest-router');
+var fs = require("fs");
 var app = express();
+
+// building absolute path to client folder
+var clientPath = path.join(__dirname.split(path.sep).slice(0, -1).join(path.sep), "client");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,13 +27,14 @@ app.use(express.static("../client"));
 //app.use(express.static(path.join(__dirname, 'public')));
 
 
-
 // passing all requests to router
-app.use('/articles', dataRouter);
-app.use('/', VKRouter);
+app.use('/rest', restRouter);
+app.use('/vk-api', VKRouter);
 
-
-
+app.all('/*', function(req, res) {
+  // res.redirect('/');
+  res.sendFile(path.join(clientPath, '/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

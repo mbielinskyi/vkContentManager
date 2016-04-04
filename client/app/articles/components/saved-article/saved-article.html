@@ -1,24 +1,54 @@
-<md-card>
-    </md-card-title>
-    <md-card-content>
+<md-card layout="column" flex>
+    <md-card-content layout="column" flex>
       <p>
       	{{ $ctrl.article.text }}
       </p>
+      <span flex></span>
       <md-divider></md-divider>
-      <p>
-      	Created: {{$ctrl.article.creationDate | date:"MM/dd/yyyy h:mma"}}
-      </p>
-      <p>
-      	Scheduled: 
-      	<span ng-class="{expiredArticle: $ctrl.article.isExpired}">
-      		{{$ctrl.article.isExpired? "expired": $ctrl.article.scheduledPostDate | date:"MM/dd/yyyy 'at' hh:mm:ss"}}
-      	</span>
-      </p>
-      <p ng-if="!$ctrl.article.isExpired">Will expire in: {{$ctrl.article.willExpireIn | millSecondsToTimeString}}</p>
+      <div layout="column">
+        <div style="margin: 6px 0 10px 0" layout="row">
+          <img class="group-avatar" ng-src="{{$ctrl.article.ownerPhoto}}">
+          <div layout="column">
+            <span class="truncate" style="font-size:14px; color: #606060">
+              {{$ctrl.article.ownerName}} 
+            </span>  
+            <span class="truncate" style="font-size:14px; color: #606060">
+              (id: {{-$ctrl.article.ownerId}})
+            </span>       
+          </div>
+        </div>
+        <div layout="column">
+          <span style="font-size:14px; color: #606060">
+            Created: {{$ctrl.article.creationDate | date:"MM/dd/yyyy 'at' hh:mm:ss"}}
+            <br>
+            Scheduled: {{$ctrl.article.scheduledPostDate | date:"MM/dd/yyyy 'to' hh:mm:ss"}}
+            <br>
+            Delay: {{$ctrl.article.delay | msToTime}}
+          </span>          
+        </div>
+      </div>
     </md-card-content>
 
-    <md-card-actions layout="row" >
-      	<md-button flex class="md-raised md-warn" ng-click="$ctrl.deleteArticle()">delete</md-button>
-      	<md-button flex class="md-raised md-primary" ng-click="$ctrl.addToQueue()">add to queue</md-button>
+
+    <md-card-actions layout="row">
+        <span flex></span>
+      	<md-button class="md-icon-button" ng-click="$ctrl.addToQueue()">
+          <md-icon class="custom-icon">alarm_add</md-icon>
+          <md-tooltip md-delay="500" md-direction="bottom">
+            Move to Queue
+          </md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="$ctrl.editArticle()">
+          <md-icon class="custom-icon">mode_edit</md-icon>
+          <md-tooltip md-delay="500" md-direction="bottom">
+            Edit Article
+          </md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="$ctrl.deleteArticle()">
+          <md-icon class="custom-icon">delete_forever</md-icon>
+          <md-tooltip md-delay="500" md-direction="bottom">
+            Delete Article
+          </md-tooltip>
+        </md-button>
     </md-card-actions>
 </md-card>

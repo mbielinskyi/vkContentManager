@@ -1,6 +1,8 @@
 [
 	{
 		"ownerId": -50732577,
+		"ownerPhoto": "http://cs411826.vk.me/v411826249/8deb/32NlURltAKw.jpg",
+		"ownerName":"iForward - служба доставки из США",
 		"delay": 10000,
 		"text": "Русский текст",
 		"author": "Maksim Bielinskyi",
@@ -11,6 +13,8 @@
 	},
 	{
 		"ownerId": -50732577,
+		"ownerPhoto": "http://cs411826.vk.me/v411826249/8deb/32NlURltAKw.jpg",
+		"ownerName":"iForward - служба доставки из США",
 		"delay": 12000,
 		"text": "some new text to be posted",
 		"author": "Maksim Bielinskyi",
@@ -21,6 +25,8 @@
 	},
 	{
 		"ownerId": -72099551,
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"ownerName":"PAINTBALL Хащевое 01.06.2014",
 		"delay": 14000,
 		"text": "some new new text to be posted",
 		"author": "Maksim Bielinskyi",
@@ -31,6 +37,8 @@
 	},
 	{
 		"ownerId": -52776178,
+		"ownerName":"forPRO - магазин MMA снаряжения и одежды",
+		"ownerPhoto":"http://cs312617.vk.me/v312617249/d8f/5lbsPPttZR4.jpg",
 		"delay": 16000,
 		"text": "some new new new text to be posted",
 		"author": "Maksim Bielinskyi",
@@ -41,6 +49,8 @@
 	},
 	{
 		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
 		"delay": 18000,
 		"text": "some new new new new text to be posted",
 		"author": "Maksim Bielinskyi",
@@ -51,6 +61,8 @@
 	},
 	{
 		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
 		"delay": 30000,
 		"text": "some new new new new new text to be posted",
 		"author": "Maksim Bielinskyi",
@@ -61,6 +73,8 @@
 	},
 	{
 		"ownerId": -116462359,
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"ownerName":"test",
 		"delay": 10000,
 		"text": "Some text 1",
 		"author": "Maksim Bielinskyi",
@@ -71,6 +85,8 @@
 	},
 	{
 		"ownerId": -116462359,
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"ownerName":"test",
 		"delay": 10000,
 		"text": "Some text 2",
 		"author": "Maksim Bielinskyi",
@@ -81,6 +97,8 @@
 	},
 	{
 		"ownerId": -116462359,
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"ownerName":"test",
 		"delay": 10000,
 		"text": "Some text 3",
 		"author": "Maksim Bielinskyi",
@@ -91,6 +109,8 @@
 	},
 	{
 		"ownerId": -116462359,
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"ownerName":"test",
 		"delay": 10000,
 		"text": "Some text 4",
 		"author": "Maksim Bielinskyi",
@@ -101,6 +121,8 @@
 	},
 	{
 		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
 		"delay": 10000,
 		"text": "Some text 5",
 		"author": "Maksim Bielinskyi",
@@ -111,6 +133,8 @@
 	},
 	{
 		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
 		"delay": 10000,
 		"text": "Some text 6",
 		"author": "Maksim Bielinskyi",
@@ -121,6 +145,8 @@
 	},
 	{
 		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
 		"delay": 10000,
 		"text": "Some text 7",
 		"author": "Maksim Bielinskyi",
@@ -128,5 +154,44 @@
 		"creationDate": 1458842639059,
 		"isExpired": false,
 		"status": 0
-	}	
+	},
+	{
+		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"delay": 10000,
+		"text": "Some text 8",
+		"author": "Maksim Bielinskyi",
+		"scheduledPostDate": 1458842639059,
+		"actualPostDate": 1458842649059,
+		"creationDate": 1458842639059,
+		"isExpired": false,
+		"status": 2
+	},
+	{
+		"ownerId": -51880934,
+		"ownerName":"go4it.com.ua",
+		"ownerPhoto": "http://vk.com/images/community_50.png",
+		"delay": 10000,
+		"text": "Some text 9",
+		"author": "Maksim Bielinskyi",
+		"scheduledPostDate": 1458842639059,
+		"actualPostDate": 1458842656897,
+		"creationDate": 1458842639059,
+		"isExpired": false,
+		"status": 2
+	},
+	{
+		"ownerId": -50732577,
+		"ownerPhoto": "http://cs411826.vk.me/v411826249/8deb/32NlURltAKw.jpg",
+		"ownerName":"iForward - служба доставки из США",
+		"delay": 10000,
+		"text": "Some text 10",
+		"author": "Maksim Bielinskyi",
+		"scheduledPostDate": 1458842639059,
+		"actualPostDate": 1458842651876,
+		"creationDate": 1458842639059,
+		"isExpired": false,
+		"status": 2
+	}			
 ]

@@ -5,10 +5,12 @@ define([], function () {
 		$ctrl.groups = [];
 
 
-		$ctrl.toggleGroupAutoposting = function (group) {
+		$ctrl.toggleGroupAutoposting = function (group, $event) {
 			group.isActive = !group.isActive;
 
 			articlePostingQueue.toggleGroupAutoposting(group.gid);
+
+			$event.stopPropagation();
 		};
 
 		function updateGroupsActivationState (groups) {
@@ -19,9 +21,16 @@ define([], function () {
 		}
 
 		$ctrl.$onInit = function () {
+
 			$ctrl.groupsPromise.then(function (groups) {
+				$ctrl.selectedGroup = groups[0];
 				updateGroupsActivationState(groups);
 			});			
+		};
+
+		$ctrl.selectGroup = function (group) {
+			$ctrl.onSelect({group: group});
+			$ctrl.selectedGroup = group;
 		};
 	}
 

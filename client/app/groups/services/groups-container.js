@@ -6,6 +6,7 @@ define([], function () {
 			var subscriptions= {
 				update: []
 			};
+			var groupsRequestUrl = "http://localhost:3000/vk-api/get-groups";
 			var pendingGroupsDeffered;
 			var groupsCache = [];
 			// it should combine Groups date recieved from VK 
@@ -38,18 +39,13 @@ define([], function () {
 					if (!pendingGroupsDeffered) {
 						pendingGroupsDeffered = $q.defer();
 
-						$http.get("http://localhost:3000/get-groups").then(
+						$http.get(groupsRequestUrl).then(
 							function (r) {
 								var data = r.data.response;
-								var groups = data.slice(1, data.length);
+								var groupsCache = data.slice(1, data.length);
 
-								articlesContainer.query().then(function (articles) {
-									//perform data combination actions
-									var combinedGroups = groupsCache = combineGroupWithArticle(groups, articles);
-
-									pendingGroupsDeffered.resolve(combinedGroups);
-									pendingGroupsDeffered = undefined;
-								});
+								pendingGroupsDeffered.resolve(groupsCache);
+								pendingGroupsDeffered = undefined;
 							},
 							function (error) {
 								pendingGroupsDeffered.reject(error);
@@ -68,6 +64,14 @@ define([], function () {
 							storedGroup.articles.push(article);
 						}
 					});
+				},
+
+				getById: function (id) {
+					if (groupsCache.length) {
+						return groupsCache.filter(function (group) {
+							return group.gid === -id;
+						})[0];
+					}
 				}
 			};	
 		}

@@ -1,30 +1,42 @@
 <!-- group details -->
-<md-whiteframe style="min-width: 700px" class="md-whiteframe-1dp" layout-margin style="min-height: 100px" layout="row">
+<!-- <md-whiteframe style="min-width: 700px" class="md-whiteframe-1dp" layout-margin style="min-height: 100px" layout="row">
 	<img ng-src="{{$ctrl.selectedGroup.photo_medium}}">
 	<div layout-margin layout="column">
 		<h3>{{$ctrl.selectedGroup.name}}</h3>		
 		<p>ID: {{$ctrl.selectedGroup.gid}}</p>
 	</div>
-</md-whiteframe>
-<md-whiteframe style="min-width: 700px" class="md-whiteframe-1dp" layout-margin flex layout = "column">
-	<md-tabs layout="column" flex md-border-bottom>
-		<md-tab layout="column" flex  label="Articles ({{($ctrl.selectedGroup.articles | filter:{status:0}).length}})">
-				<my-articles-list columns="2" flex layout="column" articles="$ctrl.selectedGroup.articles" on-delete="" on-add-to-queue=""></articles-list>
-		</md-tab>
-		<md-tab layout="column" flex  label="Posting Queue ({{($ctrl.selectedGroup.articles | filter:{status:1}).length}})">
+</md-whiteframe> -->
 
-				<posting-queue articles="$ctrl.selectedGroup.articles"></posting-queue>
+		
 
-		</md-tab>
-		<md-tab layout="column" flex  label="Posting History ({{($ctrl.selectedGroup.articles | filter:{status:2}).length}})">
+	<md-whiteframe style="min-width: 700px;" class="md-whiteframe-1dp" layout-margin flex layout = "column">
+<!-- 		<div layout="row">
+			<md-button ng-link="['MyArticlesList']">MyArticlesList</md-button>
+			<md-button ng-link="['PostingQueue']">PostingQueue</md-button>
+			<md-button ng-link="['PostingHistory']">PostingHistory</md-button>
+			<md-button ng-link="['NewContent']">NewContent</md-button>
+		</div>
+		<ng-outlet flex layout = "column"></ng-outlet> -->
+<!-- 		<md-tabs layout="column" flex md-border-bottom>
+			<md-tab layout="column" flex  label="Articles ({{($ctrl.selectedGroup.articles | filter:{status:0}).length}})">
+					<my-articles-list columns="2" flex layout="column" articles="$ctrl.selectedGroup.articles" on-delete="" on-add-to-queue=""></articles-list>
+			</md-tab>
+			<md-tab layout="column" flex  label="Posting Queue ({{($ctrl.selectedGroup.articles | filter:{status:1}).length}})">
 
-				<posting-history articles="$ctrl.selectedGroup.articles">
+					<posting-queue articles="$ctrl.selectedGroup.articles"></posting-queue>
 
-		</md-tab>
-		<md-tab layout="column" flex  label="New Article" layout-margin>
+			</md-tab>
+			<md-tab layout="column" flex  label="Posting History ({{($ctrl.selectedGroup.articles | filter:{status:2}).length}})">
 
-				<new-content group="$ctrl.selectedGroup" on-save="$ctrl.addArticle(article)"></new-content>
+					<posting-history articles="$ctrl.selectedGroup.articles">
 
-		</md-tab>
-	</md-tabs>
-</md-whiteframe class="md-whiteframe-1dp" layout-margin>
+			</md-tab>
+			<md-tab layout="column" flex  label="New Article" layout-margin>
+
+					<new-content group="$ctrl.selectedGroup" on-save="$ctrl.addArticle(article)"></new-content>
+
+			</md-tab>
+		</md-tabs> -->
+
+		<my-articles-list columns="2" flex layout="column" on-delete="" on-add-to-queue=""></articles-list>
+	</md-whiteframe>

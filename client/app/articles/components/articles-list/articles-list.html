@@ -1,16 +1,59 @@
-<style type="text/css">
-    .expiredArticle {
-    	color: red;
-    }
-</style>
+<md-whiteframe class="md-whiteframe-1dp" layout-margin flex layout = "column">
+	<div layout="row" flex>
+		<md-input-container>
+			<md-select flex placeholder="Select Group" ng-model="$ctrl.filters.id" md-on-open="$ctrl.loadGroups()" style="min-width: 200px;">
+	      		<md-option ng-value="group.gid" ng-repeat="group in $ctrl.groups">{{group.name}}</md-option>
+	      		<md-option ng-value="">show all</md-option>
+	    	</md-select>
 
-<md-content layout="row" flex>
-	<div flex layout="column">
-		<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | filter:{status:0} | odd">
-	    </my-article>
-	</div> 
-	<div flex layout="column">
-		<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | filter:{status:0} | even">
-	    </my-article>
-	</div> 
-</md-content>
+    	</md-input-container>
+		<md-input-container>
+	 		<md-select flex placeholder="Select Article Status" ng-model="$ctrl.filters.status" style="min-width: 200px;">
+	      		<md-option ng-value="status.id" ng-repeat="status in $ctrl.statuses">{{status.name}}</md-option>
+	      		<md-option ng-value="" default>show all</md-option>
+	    	</md-select> 
+    	</md-input-container>
+		<md-input-container>
+	        <md-checkbox ng-model="$ctrl.filters.hidePosted" aria-label="Hide Posted">
+	        	Hide posted
+	        </md-checkbox>
+    	</md-input-container>
+    	<span flex></span>
+        <md-button class="md-primary">new article</md-button>
+
+	</div>
+	<!-- <md-divider></md-divider> -->
+	<div layout="row">
+		
+	</div>
+
+	<md-content layout="column" flex>
+
+		  <md-grid-list id="articles-grid-list" layout="column" flex
+		        md-cols="2" md-cols-sm="2" md-cols-md="2" md-cols-lg="3" md-cols-gt-md="4"
+		        md-row-height-gt-md="4:3" md-row-height="400px"
+		        md-gutter="4px" md-gutter-gt-sm="4px" >
+		    <md-grid-tile layout="column" 
+		    	ng-repeat="article in $ctrl.articles | filter:{ownerId: $ctrl.filters.id, status: $ctrl.filters.status} | filter: {status: 2}">
+		      <my-saved-article ng-if="article.status === 0" style="width: 100%" layout="column" flex article="article" ></my-saved-article>
+		      <my-queued-article ng-if="article.status === 1" style="width: 100%" layout="column" flex article="article" ></my-queued-article>
+		      <my-posted-article ng-if="article.status === 2" style="width: 100%" layout="column" flex article="article" ></my-posted-article>
+		    </md-grid-tile>
+		  </md-grid-list>
+
+
+		  <div ng-if="">
+		  	NO ITEMS
+		  </div>
+
+<!-- 		<div flex layout="column">
+			<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | odd | filter:{ownerId: $ctrl.filters.id, status: $ctrl.filters.status}">
+		    </my-saved-article>
+		</div> 
+		<div flex layout="column">
+			<my-saved-article article="article" ng-repeat="(index, article) in $ctrl.articles | even | filter:{ownerId: $ctrl.filters.id, status: $ctrl.filters.status}">
+		    </my-saved-article>
+		</div>  -->
+
+	</md-content>
+</md-whiteframe>

@@ -1,6 +1,33 @@
 var express = require('express'),
 	router = express.Router(),
-	mongo = require("mongodb");
+	mongo = require("mongodb"),
+	articles = require("../articles.json");
+
+router.get('/reset', function (req, res) {
+	var MongoClient = mongo.MongoClient;
+	var url = "mongodb://localhost:27017/DB";
+	MongoClient.connect(url, function (err, db) {
+		if (err) {
+			console.log("Error in connection to DB");
+		} else {
+			console.log("Connected to DB");
+			var articlesCollection = db.collection("articles");
+
+			articlesCollection.deleteMany({}, function (err, result) {
+				if (err) res.send(err);
+
+				articlesCollection.insert(articles, function (err, result) {
+					if (err) res.send(err);
+
+					res.send(result);
+
+					db.close();
+				});
+			});
+		}
+	});
+});
+
 
 router.get('/', function(req, res) {
 	// articles list should be returned from db
@@ -63,10 +90,10 @@ router.put('/:id', function(req, res) {
 			console.log("Connected to DB");
 			var articlesCollection = db.collection("articles");
 			var _id = mongo.ObjectID.createFromHexString(req.params.id);
-
+			delete req.body._id
 			articlesCollection.update(
 				{_id:_id},
-				{$set: [req.body]},
+				{$set: req.body},
 				{safe: true},
 				function (err, result) {
 					if (err) {

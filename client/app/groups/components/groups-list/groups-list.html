@@ -1,39 +1,21 @@
-<style type="text/css">
-	.badge {
-		border-radius: 8px;
-		background: #f0f0f0;
-		font-size:8pt;
-		line-height: 22px;
-		padding: 2px 8px;
-	}
-
-	.badge-red {
-		background: #FFCDD2;
-	}
-
-	.badge-grey {
-		background: #F5F5F5;
-	}
-
-	.badge-green {
-		background: #C8E6C9;
-	}
-	
-	.badge-teal {
-		background: #B2DFDB;
-	}
-	
-
-</style>
-
-<md-list-item ng-repeat="group in $ctrl.groups" ng-click="$ctrl.onSelect({group: group})" class="noright">
+<md-list-item 
+	ng-class="{'selected-group': group === $ctrl.selectedGroup}" 
+	ng-repeat="group in $ctrl.groups" 
+	ng-click="$ctrl.selectGroup(group)" 
+	class="noright">
 	<md-divider ng-if="!$last"></md-divider>
     <img alt="{{ group.name}}" ng-src="{{ group.photo }}" class="md-avatar" />
     <p>{{ group.name }}</p>
-    <md-button class="md-raised" 
-    	ng-click="$ctrl.toggleGroupAutoposting(group); $event.stopPropagation();" 
-    	ng-class="{'md-primary': !group.isActive, 'md-warn': group.isActive}">
-    	{{group.isActive? 'stop posting': 'start posting'}}
+    <md-button class="md-icon-button"
+    	ng-mousedown="$event.stopPropagation()"
+    	ng-mouseup="$event.stopPropagation()"
+    	ng-click="$ctrl.toggleGroupAutoposting(group, $event)" >
+    	<md-icon ng-class="{red: group.isActive, 'dark-grey': !group.isActive}">
+    		{{group.isActive? 'pause_circle_outline': 'play_circle_outline'}}
+    	</md-icon>
+    	<md-tooltip md-delay="500" md-direction="bottom">
+            {{group.isActive? 'Stop autoposting': 'Start autoposting'}}
+        </md-tooltip>
     </md-button>
 </md-list-item>		
 
